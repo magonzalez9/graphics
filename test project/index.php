@@ -1,4 +1,4 @@
 <?php
-	echo 'Hello Wor d';
+	echo 'Penis!';
 ?>
 
