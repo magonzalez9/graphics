@@ -1,4 +1,4 @@
 <?php
-	echo 'Penis!';
+	echo 'This is a test!';
 ?>
 
