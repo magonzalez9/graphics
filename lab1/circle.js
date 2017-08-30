@@ -1,0 +1,7 @@
+function goToCanvas(){
+
+}
+
+function goToGuiMouse(){
+	
+}

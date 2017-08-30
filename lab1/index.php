@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script language="javascript" type="text/javascript" src="canvas.js"></script>
+<style type="text/css">
+	button{
+		
+	}
+</style>
+<script type="text/javascript" src="main.js"></script>
 
 	<title>CS GRAPHICS Lab 1</title>
 </head>
@@ -22,10 +27,12 @@
 	<li>I enjoy spending time with family and friends</li>
 </ul>
 
-<h2>Visit HTML5 Canvas</h2>
-<!-- <a href="canvas.html" target="__blank">here </a>
-<br /> -->
-
-<button onclick="doSomething()">Do Something </button>
+<h2>Fun Stuff</h2>
+<form action="gui_mouse.html">
+    <button>GUI Mouse</button>
+</form>
+<form action="circles.html">
+   <button>Circles</button>
+</form>
 </body>
 </html>
