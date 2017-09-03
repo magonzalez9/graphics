@@ -36,7 +36,10 @@ function draw(event){
     info.push(circleObj);  
 	circleObj.generateCircle(); 
 
-	document.getElementById("circleDescription").innerHTML = "X POS: " + Math.round(circleObj.x) + "<br>" + "Y POS: " + Math.round(circleObj.y) + "<br>"+ "Radius: " + circleObj.radius; 
+	document.getElementById("circleDescription").innerHTML = "X POS: " + Math.round(circleObj.x) + "<br>" + 
+															 "Y POS: " + Math.round(circleObj.y) + "<br>"+ 
+															 "Radius: " + circleObj.radius + "<br>" +
+															 "Circles Created: " + info.length; 
 
 	
 }
@@ -65,4 +68,9 @@ function getMousePos(canvas, event) {
         x: (event.clientX - rect.left) / (rect.right - rect.left) * canvas.width,
         y: (event.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
     };
+}
+
+function clear (canvas, event){
+	
+	circle.clearRect(0, 0, canvas.width, canvas.height);
 }
