@@ -11,7 +11,7 @@ var rect;
  */
 function MouseState() {
     this.down = false;
-    this.x = 0;
+    this.c = 0;
     this.y = 0;
     this.action = 3; // 3 indicates no action
 };

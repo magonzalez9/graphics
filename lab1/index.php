@@ -2,9 +2,30 @@
 <html>
 <head>
 <style type="text/css">
-	button{
-		
-	}
+body{
+	background-color: #C9D3DB; 
+}
+  button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+button:hover {background-color: #3e8e41}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 </style>
 <script type="text/javascript" src="main.js"></script>
 
@@ -31,8 +52,10 @@
 <form action="gui_mouse.html">
     <button>GUI Mouse</button>
 </form>
+<br />
 <form action="circles.html">
    <button>Circles</button>
 </form>
+<br />
 </body>
 </html>
