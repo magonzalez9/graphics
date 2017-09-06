@@ -69,8 +69,3 @@ function getMousePos(canvas, event) {
         y: (event.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
     };
 }
-
-function clear (canvas, event){
-	
-	circle.clearRect(0, 0, canvas.width, canvas.height);
-}

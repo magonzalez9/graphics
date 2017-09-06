@@ -1,9 +1,7 @@
 <html>
     <head>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
         <style>
-            body{
-              background-color: #C9D3DB;
-            }
             canvas{
         
         border:2px solid #000000;
@@ -14,6 +12,16 @@
         <script type="text/javascript" src="gui_mouse.js"></script>
     </head>
     <body>
+    <div id="navigator">
+<ul class="topnav" id="myTopnav">
+  <li><a href="index.php">Home</a></li>
+  <li><a href="circles.html">Circles</a></li>
+  <li><a href="gui_mouse.html">GUI Mouse</a></li>
+  <li class="icon">
+  <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+  </li>
+</ul>
+</div>
         <h3>HTML Mouse Controls in  HTML5 Canvas</h3>
 
         <canvas id="gl-canvas" width="300" height="100" oncontextmenu="return false;">

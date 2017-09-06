@@ -1,37 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-body{
-	background-color: #C9D3DB; 
-}
-  button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 24px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-}
+<link rel="stylesheet" type="text/css" href="css/main.css">
 
-button:hover {background-color: #3e8e41}
-
-button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-</style>
 <script type="text/javascript" src="main.js"></script>
 
 	<title>CS GRAPHICS Lab 1</title>
 </head>
 <body>
+<div id="navigator">
+<ul class="topnav" id="myTopnav">
+  <li><a href="index.php">Home</a></li>
+  <li><a href="circles.html">Circles</a></li>
+  <li><a href="gui_mouse.html">GUI Mouse</a></li>
+  <li class="icon">
+  <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+  </li>
+</ul>
+</div>
+
 <h1>Marco Gonzalez</h1>
 <img src="Marco.jpg" width="200" height="200">
 <h2>About Me</h2>
