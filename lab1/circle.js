@@ -1,12 +1,14 @@
 // Array where all circle objects will be stored.
 info = [];
+window.onload = function{
+	var canvas = document.getElementById("myCanvas");
+    var circle = canvas.getContext("2d");
 
+}
 //Class: Circle
 //Description:
 //Params: 
 function Circle(event) {
-	canvas = document.getElementById("myCanvas");
-    circle = canvas.getContext("2d");
 	var pos = getMousePos(canvas, event);
 
 	this.x = pos.x;
