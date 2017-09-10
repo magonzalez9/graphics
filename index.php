@@ -1,5 +1,13 @@
 <?php include('visual/header.php'); ?>
-
+<style>
+  .jumbotron {
+   
+    background-image: url(visual/graphics.jpg);
+    background-position: 10% 60%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+</style>
 <div class="jumbotron">
   <div class="container text-center">
     <h1>Computer Graphics</h1>      

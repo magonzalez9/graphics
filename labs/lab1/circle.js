@@ -50,9 +50,8 @@ function drawOnCanvas(event){
 //Returns: none
 function colorCircle(){
 	for (var i = 0; i < circles.length; i++) {
-		ctx.beginPath();
-		ctx.arc(circles[i].x, circles[i].y, circles[i].radius,0,2*Math.PI);
 		ctx.fillStyle = '#'+(Math.random()*0xFFFFFF<<0).toString(16);;
+		circles[i].drawCircle(); 
 		ctx.fill();
 	}
 	

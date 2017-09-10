@@ -9,6 +9,7 @@
 var Shapes = {};   // set up Shapes namespace
 
 Shapes.cube = new Cube();  // global
+Shapes.disk = new Disk(); 
 // TO DO:  DECLARE OTHER SHAPES
 
 /**
@@ -16,7 +17,7 @@ Shapes.cube = new Cube();  // global
  * @return {undefined}
  */
 Shapes.initShapes = function () {
-    Shapes.initBuffers(Shapes.cube);
+    Shapes.initBuffers(Shapes.disk);
     // TO DO:  INITIALIZE OTHER SHAPES
 };
 
