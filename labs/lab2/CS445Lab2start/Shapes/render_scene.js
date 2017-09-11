@@ -12,6 +12,7 @@ var zAxis = 2;            // index for the z axis
 var theta = [0, 0, 0];  // rotation around each axis
 
 var shape = Shapes.cube; // shape to be drawn
+var shape = Shapes.disk; 
 
 window.onload = function init()
 {
@@ -67,6 +68,9 @@ function initWindowListeners()  {
                 shape = Shapes.cube;
                 break;
             // TO DO:  ADD OTHER CASES FOR OTHER SHAPES
+            case 1: 
+                shape = Shapes.disk; 
+                break; 
         }
     };
 }

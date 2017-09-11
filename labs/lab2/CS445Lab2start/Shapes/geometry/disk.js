@@ -1,40 +1,28 @@
-///// CUBE DEFINTION
-/////
-///// Cube is defined to be centered at the origin of the coordinate reference system. 
-///// Cube size is assumed to be 2.0 x 2.0 x 2.0 .
-
-///// Generate 12 triangles: 36 vertices and 36 colors
-/////    v6----- v7
-/////   /|      /|
-/////  v2------v3|              ^ y
-/////  | |     | |              |
-/////  | |v4---|-|v5            -->x
-/////  |/      |/              /
-/////  v0------v1              z
-///// Always use the Right Hand Rule to generate vertex sequence. We want outward facing normals.
 function Disk() {
 
-  
-
     this.name = "disk";
-    this.numDivisions = 8; 
-    this.numVertices = 36;
+    this.numDivisions = 20;
+    this.numVertices = 60;
     this.numTriangles = this.numDivisions;
+    this.theta = (2 * Math.PI) / this.numDivisions;
+    this.vertices = [];
+    this.colors = [];
+    this.normals = [];
+    this.texCoords = [];
 
-    this.vertices = [this.numVertices];
-    this.colors = [this.numVertices];
-    this.normals = [this.numVertices];
-    this.texCoords = [this.numVertices];
+    for (i = 0; i < this.numTriangles; i++) {
+        currentAngle = this.theta * i;
+        nextAngle = this.theta * (i+1);
+        this.vertices[i*3] = vec4(0, 0, 0,1); // Center vertice
+        this.vertices[i*3 + 1] = vec4(Math.cos(currentAngle), 0, Math.sin(currentAngle),1);
+        this.vertices[i*3 + 2] = vec4(Math.cos(nextAngle), 0, Math.sin(nextAngle),1);
 
-      //Math stuff
-    this.theta = (2*Math.PI)/this.numDivisions; 
+        //Set colors
+        this.colors[i*3] = vec4(1.0,1.0,0.0,1);
+        this.colors[i*3 + 1] = vec4(0.7,0.0, 1.0,1);
+        this.colors[i*3 + 2] = vec4(0.1,1.0,0.6,1);
+    }
 
-    // Local variables: unique vertices and colors.
-    //////////////////////////////////////////////////////////////
-    //for (i = 0; i < this.numTriangles; i++){
-        this.texCoords[0] = (vec4(1,0,.5,1.0))
-         this.colors[0] = (1,1,1,1)
-
-        
-    //}
+    console.log(this.vertices);
+    console.log(this.colors);
 }
