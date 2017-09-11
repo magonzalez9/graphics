@@ -17,7 +17,7 @@ Shapes.disk = new Disk();
  * @return {undefined}
  */
 Shapes.initShapes = function () {
-    Shapes.initBuffers(Shapes.disk);
+    Shapes.initBuffers(Shapes.Cube);
     // TO DO:  INITIALIZE OTHER SHAPES
 };
 

@@ -30,8 +30,11 @@ function Disk() {
     this.theta = (2*Math.PI)/this.numDivisions; 
 
     // Local variables: unique vertices and colors.
-    ////////////////////////////////////////////////////////////
-    for (i = 0; i < this.numTriangles; i++){
-        this.vertices[i] = (90, 0, i)
-    }
+    //////////////////////////////////////////////////////////////
+    //for (i = 0; i < this.numTriangles; i++){
+        this.texCoords[0] = (vec4(1,0,.5,1.0))
+         this.colors[0] = (1,1,1,1)
+
+        
+    //}
 }
