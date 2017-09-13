@@ -11,6 +11,7 @@ var Shapes = {};   // set up Shapes namespace
 Shapes.cube = new Cube();  // global
 // TO DO:  DECLARE OTHER SHAPES
 Shapes.disk = new Disk(); 
+Shapes.cylinder = new Cylinder();
 
 /**
  * Create and load the buffers for all of the primitive shapes.
@@ -20,6 +21,7 @@ Shapes.initShapes = function () {
     Shapes.initBuffers(Shapes.cube);
     // TO DO:  INITIALIZE OTHER SHAPES
     Shapes.initBuffers(Shapes.disk); 
+    Shapes.initBuffers(Shapes.cylinder);
 };
 
 /**
