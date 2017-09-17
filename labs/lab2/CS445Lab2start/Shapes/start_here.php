@@ -1,5 +1,5 @@
-<html>
-    <link rel="icon" type="image/x-icon" href="./favicon.png">
+<?php include("../../../../visual/header.php"); ?>
+
     <script id="vertex-shader" type="x-shader/x-vertex">
        attribute vec4 vPosition;
        attribute vec4 vColor;
@@ -33,13 +33,12 @@
     <script type="text/javascript" src="geometry/Cube.js"></script>
     <script type="text/javascript" src="geometry/disk.js"></script>
     <script type="text/javascript" src="geometry/Cylinder.js"></script>
-     
+      <script type="text/javascript" src="geometry/Cone.js"></script>
     <!-- TO DO:  ADD OTHER SHAPE FILES HERE -->
     <script type="text/javascript" src="geometry/Shapes.js"></script>
     <script type="text/javascript" src="render_scene.js"></script>
 
 
-    <body>
 
         <h2> Lab 2: Demonstration of Geometry</h2>
 
@@ -57,8 +56,8 @@
             <option value="0">Cube</option>
             <option value="1">Disk</option>
             <option value="2">Cylinder</option>
+             <option value="3">Cone</option>
             <!-- TO DO:  ADD OTHER SHAPES -->
         </select>
 
-    </body>
-</html>
+<?php include("../../../../visual/footer.php"); ?>

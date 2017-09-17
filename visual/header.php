@@ -42,8 +42,8 @@
           </a>
           <ul class="dropdown-menu">
           <li><a href="http://localhost/graphics/labs/lab1/index.php">Lab 1</a></li>
-            <li><a href="http://localhost/graphics/labs/lab2/CS445Lab2start/Shapes/start_here.html">Lab 2</a></li>
-            <li><a href="#">Lab 3</a></li>
+            <li><a href="http://localhost/graphics/labs/lab2/CS445Lab2start/Shapes/start_here.php">Lab 2</a></li>
+            <li><a href="http://localhost/graphics/labs/lab3/Lab3_Transformations/start_here.php">Lab 3</a></li>
             <li><a href="#">Lab 4</a></li> 
             <li><a href="#">Lab 5</a></li> 
           </ul>

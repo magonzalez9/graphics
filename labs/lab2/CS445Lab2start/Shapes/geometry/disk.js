@@ -2,11 +2,11 @@
 //Lab Partner: Rachel Harvill
 //September 12, 2017
 
-function Disk() {
+function Disk(numDivisions) {
 
     this.name = "disk";
-    this.numDivisions = 40;
-    this.numVertices = 120;
+    this.numDivisions = numDivisions;
+    this.numVertices = numDivisions *3;
     this.numTriangles = this.numDivisions;
     this.theta = (2 * Math.PI) / this.numDivisions;
     this.vertices = [];

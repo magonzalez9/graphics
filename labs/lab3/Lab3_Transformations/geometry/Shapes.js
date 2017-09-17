@@ -9,28 +9,13 @@
 var Shapes = {};   // set up Shapes namespace
 
 Shapes.cube = new Cube();  // global
-// TO DO:  DECLARE OTHER SHAPES
-Shapes.disk = new Disk(20); 
-Shapes.cylinder = new Cylinder();
-Shapes.cone = new Cone(8); 
 
-/**
- * Create and load the buffers for all of the primitive shapes.
- * @return {undefined}
- */
+
 Shapes.initShapes = function () {
     Shapes.initBuffers(Shapes.cube);
-    // TO DO:  INITIALIZE OTHER SHAPES
-    Shapes.initBuffers(Shapes.disk); 
-    Shapes.initBuffers(Shapes.cylinder);
-    Shapes.initBuffers(Shapes.cone);
 };
 
-/**
- * Create and load buffers on GPU for the primitive.
- * @param {type} primitive 
- * @return {undefined}
- */
+
 Shapes.initBuffers = function (primitive) {
 
     // SET UP ARRAY BUFFER FOR VERTICES 
@@ -39,6 +24,7 @@ Shapes.initBuffers = function (primitive) {
     gl.bindBuffer(gl.ARRAY_BUFFER, primitive.vertexBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(primitive.vertices), gl.STATIC_DRAW);
     gl.bindBuffer(gl.ARRAY_BUFFER, null); // done with this buffer
+
 
     // SET UP ARRAY BUFFER FOR VERTEX COLORS 
     ////////////////////////////////////////////////////////////
@@ -61,8 +47,7 @@ Shapes.initBuffers = function (primitive) {
 
     primitive.numEdgeVertices = edges.length;
 
-    // SET UP ARRAY BUFFER FOR EDGES     
-    ////////////////////////////////////////////////////////////
+
     primitive.edgeBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, primitive.edgeBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(edges), gl.STATIC_DRAW);
@@ -75,20 +60,15 @@ Shapes.initBuffers = function (primitive) {
         edgeColors.push([0.0, 0.0, 0.0, 1.0]);
     }
 
-    // SET UP ARRAY BUFFER FOR EDGE COLORS     
-    ////////////////////////////////////////////////////////////
+
     primitive.edgeColorBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, primitive.edgeColorBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(edgeColors), gl.STATIC_DRAW);
     gl.bindBuffer(gl.ARRAY_BUFFER, null); // done with this buffer
-};
+}
 
-/**
- * Enable the buffers and draw the primitive shape
- * @param {type} primitive
- * @return {undefined}
- */
 Shapes.drawPrimitive = function (primitive) {
+
     gl.bindBuffer(gl.ARRAY_BUFFER, primitive.vertexBuffer);
     gl.enableVertexAttribArray(vPosition);
     gl.vertexAttribPointer(vPosition, 4, gl.FLOAT, false, 0, 0);
@@ -107,6 +87,8 @@ Shapes.drawPrimitive = function (primitive) {
 };
 
 Shapes.drawWiredPrimitive = function (primitive) {
+
+    gl.uniform4fv(uColor, vec4(0.0, 0.0, 0.0, 1.0)); 
     gl.bindBuffer(gl.ARRAY_BUFFER, primitive.edgeBuffer);
     gl.enableVertexAttribArray(vPosition);
     gl.vertexAttribPointer(vPosition, 4, gl.FLOAT, false, 0, 0);
@@ -120,7 +102,7 @@ Shapes.drawWiredPrimitive = function (primitive) {
     gl.disableVertexAttribArray(vPosition);
     gl.disableVertexAttribArray(vColor);
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
-};
+}
 
 
 

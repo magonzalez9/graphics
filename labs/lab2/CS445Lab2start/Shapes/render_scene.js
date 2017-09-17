@@ -75,6 +75,9 @@ function initWindowListeners()  {
             case 2: 
                 shape = Shapes.cylinder; 
                 break;
+            case 3:
+                shape = Shapes.cone; 
+                break; 
 
         }
     };
