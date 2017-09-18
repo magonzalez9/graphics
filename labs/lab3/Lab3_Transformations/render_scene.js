@@ -8,6 +8,7 @@ var uModel_view;  //  shader uniform variable for model-view matrix
 
 var thetaY = -15;  // rotation around y axis
 var viewMat;     // view matrix (will get to in Lab 4)
+var stack = new MatrixStack(); 
 
 window.onload = function init()
 {
@@ -82,16 +83,22 @@ function render()
    
     // Draw a red cube   
     gl.uniformMatrix4fv(uModel_view, false, flatten(viewMat)); // set modelview transform
-    gl.uniform4fv(uColor, vec4(1.0, 0.0, 0.0, 1.0));  // set color to red
-    Shapes.drawPrimitive(Shapes.cube);    // draw cube
+    gl.uniform4fv(uColor, vec4(1.0, 1.0, 1.0, 1.0));  // set color to red
+    Shapes.drawPrimitive(Shapes.cylinder);    // draw cube
     
-    // draw a non-uniformly scaled and translated green cube.
+    // // draw a non-uniformly scaled and translated green cube.
     viewMat = mult(viewMat, translate(-2.5,0,0)); // update modelview transform
     viewMat = mult(viewMat, scalem(1,2,1));   // update modelview transform
     gl.uniformMatrix4fv(uModel_view, false, flatten(viewMat)); // set view transform
     gl.uniform4fv(uColor, vec4(0.0, 1.0, 0.0, 1.0));  // set color to green
-    Shapes.drawPrimitive(Shapes.cube);  // draw cube
+    Shapes.drawPrimitive(Shapes.disk);  // draw cube
 
-    requestAnimFrame(render);
+    viewMat = mult(viewMat, translate(5,0,0)); // update modelview transform
+    //viewMat = mult(viewMat, scalem(1,2,1));   // update modelview transform
+    gl.uniformMatrix4fv(uModel_view, false, flatten(viewMat)); // set view transform
+    gl.uniform4fv(uColor, vec4(0.0, 0, 1.0, 1.0, 1.0));  // set color to green
+    Shapes.drawPrimitive(Shapes.cone);  // draw cube
+
+     requestAnimFrame(render);
 }
 

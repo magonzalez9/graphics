@@ -1,13 +1,11 @@
 //Marco Gonzalez
-//Lab Partner: Rachel Harvill
-//September 12, 2017
 
 function Cone(numDivisions) {
 
   this.name = "cone";
     this.numDivisions = numDivisions; //number of triangles
     this.numVertices = numDivisions*12; // number of vertices (corners)
-    this.numTriangles = 3*this.numDivisions;
+    this.numTriangles = 3 * this.numDivisions;
     this.theta = (2 * Math.PI) / this.numDivisions;
     this.vertices = [];
     this.colors = [];

@@ -34,8 +34,11 @@
 
     
  <!-- TO DO: ADD MATRIX STACK AND SHAPES-->
-     <script type="text/javascript" src="Common/MatrixStack.js"></script>
+    <script type="text/javascript" src="Common/MatrixStack.js"></script>
     <script type="text/javascript" src="geometry/Cube.js"></script>
+    <script type="text/javascript" src="geometry/Cone.js"></script>
+    <script type="text/javascript" src="geometry/Disk.js"></script>
+    <script type="text/javascript" src="geometry/Cylinder.js"></script>
    
     <script type="text/javascript" src="geometry/Shapes.js"></script>
     <script type="text/javascript" src="render_scene.js"></script>
