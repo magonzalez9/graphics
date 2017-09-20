@@ -39,6 +39,7 @@
     <script type="text/javascript" src="geometry/Cone.js"></script>
     <script type="text/javascript" src="geometry/Disk.js"></script>
     <script type="text/javascript" src="geometry/Cylinder.js"></script>
+    <script type="text/javascript" src="geometry/Helicopter.js"></script>
    
     <script type="text/javascript" src="geometry/Shapes.js"></script>
     <script type="text/javascript" src="render_scene.js"></script>
