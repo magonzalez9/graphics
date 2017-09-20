@@ -8,6 +8,7 @@ var uModel_view;  //  shader uniform variable for model-view matrix
 
 var thetaY = -15;  // rotation around y axis
 var viewMat;     // view matrix (will get to in Lab 4)
+var stack = new MatrixStack(); 
 
 window.onload = function init()
 {
@@ -61,7 +62,7 @@ function cameraSetup() {
     // learn about this in Lab 4
     thetaY += 1.0;  // increase rotation about chosen axis
     var eye = vec3(0.0, 4.0, 8.0);  // location of camera
-    var at = vec3(0, 0, 0);         // what the camera is looking at
+    var at = vec3(0, 0, 0);         // what the camera is looking at (0,0,0)
     var up = vec3(0, 1, 0);         // the camera's up direction
     viewMat = lookAt(eye, at, up);  // view matrix
     var axisRot = rotateY(thetaY);  // rotation matrix for rotating around the y axis
@@ -76,22 +77,51 @@ function cameraSetup() {
 
 function render()
 {
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    // (X,Y,Z)
+     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     
-    cameraSetup();
-   
-    // Draw a red cube   
-    gl.uniformMatrix4fv(uModel_view, false, flatten(viewMat)); // set modelview transform
-    gl.uniform4fv(uColor, vec4(1.0, 0.0, 0.0, 1.0));  // set color to red
-    Shapes.drawPrimitive(Shapes.cube);    // draw cube
+    cameraSetup(); // computes viewMat
+    stack.clear();  // clear the stack and place identity matrix on top [Ident]
+    stack.multiply(viewMat); // stack is now: [viewMat]
     
-    // draw a non-uniformly scaled and translated green cube.
-    viewMat = mult(viewMat, translate(-2.5,0,0)); // update modelview transform
-    viewMat = mult(viewMat, scalem(1,2,1));   // update modelview transform
-    gl.uniformMatrix4fv(uModel_view, false, flatten(viewMat)); // set view transform
-    gl.uniform4fv(uColor, vec4(0.0, 1.0, 0.0, 1.0));  // set color to green
+    stack.push();
+    stack.multiply(translate(1.5,3,1.1)); // multiply top of stack by translate on right [viewMat*translate]
+    stack.multiply(scalem(.1,.05,1)); // multiply top of stack by scale on right [viewMat*translate*scale]
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
+    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
     Shapes.drawPrimitive(Shapes.cube);  // draw cube
+    stack.pop(); 
+
+    stack.push(); 
+    stack.multiply(translate(1.5,3,-1.1));
+    stack.multiply(scalem(.1,.05,1)); // multiply top of stack by scale on right [viewMat*translate*scale]
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
+    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
+    Shapes.drawPrimitive(Shapes.cube);  // draw cube
+    stack.pop();
+
+    stack.push(); 
+    stack.multiply(translate(.4,3,0));
+    stack.multiply(scalem(1,.05,.1)); // multiply top of stack by scale on right [viewMat*translate*scale]
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
+    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
+    Shapes.drawPrimitive(Shapes.cube);  // draw cube
+    stack.pop();
+
+    stack.push(); 
+    stack.multiply(translate(2.6,3,0));
+    stack.multiply(scalem(1,.05,.1)); // multiply top of stack by scale on right [viewMat*translate*scale]
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
+    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
+    Shapes.drawPrimitive(Shapes.cube);  // draw cube
+    stack.pop();
+
+    
+ 
+
+
 
     requestAnimFrame(render);
+   
 }
 

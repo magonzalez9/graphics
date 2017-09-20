@@ -9,10 +9,16 @@
 var Shapes = {};   // set up Shapes namespace
 
 Shapes.cube = new Cube();  // global
+Shapes.cylinder = new Cylinder(20); 
+Shapes.disk = new Disk(20); 
+Shapes.cone = new Cone(20); 
 
 
 Shapes.initShapes = function () {
     Shapes.initBuffers(Shapes.cube);
+    Shapes.initBuffers(Shapes.cylinder);
+    Shapes.initBuffers(Shapes.disk);
+    Shapes.initBuffers(Shapes.cone); 
 };
 
 
