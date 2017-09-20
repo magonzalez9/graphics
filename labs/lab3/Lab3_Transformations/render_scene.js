@@ -60,7 +60,7 @@ function shaderSetup() {
 function cameraSetup() {
       // All of this is to get the camera set properly. We will 
     // learn about this in Lab 4
-    thetaY += 1.0;  // increase rotation about chosen axis
+    thetaY += 0;  // increase rotation about chosen axis
     var eye = vec3(0.0, 4.0, 8.0);  // location of camera
     var at = vec3(0, 0, 0);         // what the camera is looking at (0,0,0)
     var up = vec3(0, 1, 0);         // the camera's up direction
@@ -77,48 +77,15 @@ function cameraSetup() {
 
 function render()
 {
-    // (X,Y,Z)
-     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    Shapes.helicopter.pivotColumnTheta += 3; 
+
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     
     cameraSetup(); // computes viewMat
     stack.clear();  // clear the stack and place identity matrix on top [Ident]
     stack.multiply(viewMat); // stack is now: [viewMat]
     
-    stack.push();
-    stack.multiply(translate(1.5,3,1.1)); // multiply top of stack by translate on right [viewMat*translate]
-    stack.multiply(scalem(.1,.05,1)); // multiply top of stack by scale on right [viewMat*translate*scale]
-    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
-    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
-    Shapes.drawPrimitive(Shapes.cube);  // draw cube
-    stack.pop(); 
-
-    stack.push(); 
-    stack.multiply(translate(1.5,3,-1.1));
-    stack.multiply(scalem(.1,.05,1)); // multiply top of stack by scale on right [viewMat*translate*scale]
-    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
-    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
-    Shapes.drawPrimitive(Shapes.cube);  // draw cube
-    stack.pop();
-
-    stack.push(); 
-    stack.multiply(translate(.4,3,0));
-    stack.multiply(scalem(1,.05,.1)); // multiply top of stack by scale on right [viewMat*translate*scale]
-    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
-    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
-    Shapes.drawPrimitive(Shapes.cube);  // draw cube
-    stack.pop();
-
-    stack.push(); 
-    stack.multiply(translate(2.6,3,0));
-    stack.multiply(scalem(1,.05,.1)); // multiply top of stack by scale on right [viewMat*translate*scale]
-    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
-    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
-    Shapes.drawPrimitive(Shapes.cube);  // draw cube
-    stack.pop();
-
-    
- 
-
+    Shapes.helicopter.drawHelicopter(); 
 
 
     requestAnimFrame(render);

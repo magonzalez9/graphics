@@ -1,23 +1,76 @@
 function Helicopter () {
+	this.bladeLength = 1;
+	this.bladeWidth = this.bladeLength/10;
+	this.bladeHeight = this.bladeWidth/2;
+	this.name = "helicopter"; 
 
+	this.xPos = 0; 
+	this.yPos = 3;
+	this.zPos = 1; // or 1.1  
+	//(w,h,l)
+
+	this.pivotColumnTheta = 0; 
 
 Helicopter.prototype.drawHelicopter = function(){
-	stack.clear();  // clear the stack and place identity matrix on top [Ident]
-    stack.multiply(viewMat); // stack is now: [viewMat]
-  
+	stack.push();
+	stack.multiply(rotateY(this.pivotColumnTheta));
+	this.drawPivot(); 
+	this.drawBlades(); 
+	stack.pop();
 
-    
+	// stack.push(); 
+	// this.drawBody();  
+	// stack.pop(); 
+
+
+ 
 
 }
 
-Helicopter.prototype.drawBlade = function(){
+Helicopter.prototype.drawBlades = function(){
 	stack.push();
-    stack.multiply(translate(1.5,3,1)); // multiply top of stack by translate on right [viewMat*translate]
-    stack.multiply(scalem(.1,.05,1)); // multiply top of stack by scale on right [viewMat*translate*scale]
+    stack.multiply(translate(this.xPos,this.yPos,this.zPos)); // multiply top of stack by translate on right [viewMat*translate]
+    stack.multiply(scalem(this.bladeWidth,this.bladeHeight,this.bladeLength)); // ()
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
-    gl.uniform4fv(uColor, vec4(0.0, 1.0, 0.0, 1.0));  // set color to green
+    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
     Shapes.drawPrimitive(Shapes.cube);  // draw cube
     stack.pop(); 
+
+    stack.push(); 
+    stack.multiply(translate(this.xPos,this.yPos,-this.zPos));
+    stack.multiply(scalem(this.bladeWidth,this.bladeHeight,this.bladeLength));  // multiply top of stack by scale on right [viewMat*translate*scale]
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
+    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
+    Shapes.drawPrimitive(Shapes.cube);  // draw cube
+    stack.pop();
+
+    stack.push(); 
+    stack.multiply(translate(-this.zPos,this.yPos,this.xPos));
+    stack.multiply(scalem(this.bladeLength,this.bladeHeight,this.bladeWidth));  // multiply top of stack by scale on right [viewMat*translate*scale]
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
+    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
+    Shapes.drawPrimitive(Shapes.cube);  // draw cube
+    stack.pop();
+
+    stack.push(); 
+    stack.multiply(translate(this.zPos,this.yPos,this.xPos));
+    stack.multiply(scalem(this.bladeLength,this.bladeHeight,this.bladeWidth)); // multiply top of stack by scale on right [viewMat*translate*scale]
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
+    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to green
+    Shapes.drawPrimitive(Shapes.cube);  // draw cube
+    stack.pop();
+
+}
+
+Helicopter.prototype.drawPivot = function (){
+
+    stack.push(); 
+    stack.multiply(translate(0,2.5,0));
+    stack.multiply(scalem(.1,.5,.1)); // multiply top of stack by scale on right [viewMat*translate*scale]
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
+    gl.uniform4fv(uColor, vec4(1, 0, .1, 1));  // set color to green
+    Shapes.drawPrimitive(Shapes.cube);  // draw cube
+    stack.pop();
 
 }
 
