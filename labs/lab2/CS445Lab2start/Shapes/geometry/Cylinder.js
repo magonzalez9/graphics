@@ -35,7 +35,16 @@ function Cylinder(numDivisions) {
 
         this.vertices.push(vec4(Math.cos(currentAngle), -1, Math.sin(currentAngle),1));
         this.vertices.push(vec4(Math.cos(nextAngle), 1, Math.sin(nextAngle),1));
-        this.vertices.push(vec4(Math.cos(nextAngle), -1, Math.sin(nextAngle),1)7
+        this.vertices.push(vec4(Math.cos(nextAngle), -1, Math.sin(nextAngle),1));
+
+         //Set colors
+        this.colors.push(vec4(0,0,0.0,1));
+        this.colors.push(vec4(0,0.0, 1.0,1));
+        this.colors.push(vec4(0,0.2,1,1));
+
+        this.colors.push(vec4(0,0,0.0,1));
+        this.colors.push(vec4(0,0.0, 1.0,1));
+        this.colors.push(vec4(0,0.2,1,1));
         
     }
 

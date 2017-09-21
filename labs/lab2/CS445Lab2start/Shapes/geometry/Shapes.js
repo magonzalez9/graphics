@@ -11,7 +11,7 @@ var Shapes = {};   // set up Shapes namespace
 Shapes.cube = new Cube();  // global
 // TO DO:  DECLARE OTHER SHAPES
 Shapes.disk = new Disk(20); 
-Shapes.cylinder = new Cylinder(6);
+Shapes.cylinder = new Cylinder(20);
 Shapes.cone = new Cone(8); 
 
 /**

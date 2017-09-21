@@ -60,7 +60,7 @@ function shaderSetup() {
 function cameraSetup() {
       // All of this is to get the camera set properly. We will 
     // learn about this in Lab 4
-    thetaY += .5;  // increase rotation about chosen axis
+    thetaY += .4;  // increase rotation about chosen axis
     var eye = vec3(0.0, 4.0, 8.0);  // location of camera
     var at = vec3(0, 0, 0);         // what the camera is looking at (0,0,0)
     var up = vec3(0, 1, 0);         // the camera's up direction
@@ -77,7 +77,7 @@ function cameraSetup() {
 
 function render()
 {
-    Shapes.helicopter.pivotColumnTheta += 3; 
+    Shapes.helicopter.pivotColumnTheta += 4; 
 
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     
