@@ -28,6 +28,18 @@ window.onload = function init()
     Shapes.initShapes();  // create the primitive shapes    
 
     render();              // Go draw the scene!
+
+    window.onkeydown = function (event) {
+        c = String.fromCharCode(event.keyCode);
+      
+        if (c == '&'){
+        	Shapes.helicopter.yPos +=.07; 
+        }
+
+        if (c == '('){
+        	Shapes.helicopter.yPos -=.07; 
+        }
+    };
 };
 /**
  *  Load shaders, attach shaders to program, obtain handles for 
@@ -60,7 +72,7 @@ function shaderSetup() {
 function cameraSetup() {
       // All of this is to get the camera set properly. We will 
     // learn about this in Lab 4
-    thetaY += .4;  // increase rotation about chosen axis
+    thetaY += .2;  // increase rotation about chosen axis
     var eye = vec3(0.0, 4.0, 8.0);  // location of camera
     var at = vec3(0, 0, 0);         // what the camera is looking at (0,0,0)
     var up = vec3(0, 1, 0);         // the camera's up direction
@@ -84,8 +96,18 @@ function render()
     cameraSetup(); // computes viewMat
     stack.clear();  // clear the stack and place identity matrix on top [Ident]
     stack.multiply(viewMat); // stack is now: [viewMat]
-    
-    Shapes.helicopter.drawHelicopter(); 
+  
+    Shapes.helicopter.draw(); 
+
+    stack.push();
+    stack.multiply(translate(0,-1,0)); 
+    stack.multiply(scalem(4,.1,4));
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
+    gl.uniform4fv(uColor, vec4(0, 0, .1, .6));  // set color to gray
+    Shapes.drawPrimitive(Shapes.cube);  // draw blade
+    stack.pop(); 
+
+
 
 
     requestAnimFrame(render);
