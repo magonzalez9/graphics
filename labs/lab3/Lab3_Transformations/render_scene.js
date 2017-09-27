@@ -31,13 +31,30 @@ window.onload = function init()
 
     window.onkeydown = function (event) {
         c = String.fromCharCode(event.keyCode);
-      
+      //alert(c);
         if (c == '&'){
         	Shapes.helicopter.yPos +=.07; 
         }
 
         if (c == '('){
         	Shapes.helicopter.yPos -=.07; 
+        }
+
+        if (c == '%'){
+            Shapes.helicopter.xPos -=.07; 
+        }
+
+
+        if (c == "'"){
+            Shapes.helicopter.xPos +=.07; 
+        }
+        if (c == 'A'){
+            Shapes.helicopter.zPos +=.07; 
+        }
+
+
+        if (c == "S"){
+            Shapes.helicopter.zPos -=.07; 
         }
     };
 };
@@ -96,9 +113,17 @@ function render()
     cameraSetup(); // computes viewMat
     stack.clear();  // clear the stack and place identity matrix on top [Ident]
     stack.multiply(viewMat); // stack is now: [viewMat]
-  
-    Shapes.helicopter.draw(); 
 
+    stack.push();
+    Shapes.helicopter.draw(); 
+    stack.pop(); 
+
+    // stack.push();
+    // stack.multiply(translate(5,0,0));
+    // Shapes.helicopter.draw(); 
+    // stack.pop(); 
+
+    // Draw base
     stack.push();
     stack.multiply(translate(0,-1,0)); 
     stack.multiply(scalem(4,.1,4));
@@ -107,10 +132,6 @@ function render()
     Shapes.drawPrimitive(Shapes.cube);  // draw blade
     stack.pop(); 
 
-
-
-
     requestAnimFrame(render);
    
 }
-

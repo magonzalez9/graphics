@@ -6,11 +6,11 @@ function Helicopter () {
 	this.name = "helicopter"; 
 
     //Helicopter Position
-	this.xPos = -1; 
-	this.yPos = 2;
+	this.xPos = 0; 
+	this.yPos = 0;
 	this.zPos = 1; 
 
-	this.pivotColumnTheta = 0; 
+	this.pivotColumnTheta = 7; 
 }
 Helicopter.prototype.draw = function(){
    stack.push(); 
