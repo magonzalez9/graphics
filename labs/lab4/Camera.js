@@ -38,13 +38,12 @@ Camera.prototype.calcUVN = function () {
     this.viewRotation = mat4(1);  // identity - placeholder only
 
 // TO DO:  COMPLETE THIS CODE
-     // var n = vec4(normalize(this.VPN, true));
-     // var u = vec4(normalize(cross(n,u),true),0);
-
-     // var v = vec4(normalize(cross(u,n)),0); 
-     // var t = vec4(0.0, 0.0, 0.0, 1.0);
-     // this.viewRotation = mat4(u, v, n, t);
-     // this.viewRotation.matrix = true;
+     var n = vec4(normalize(this.VPN, true));  
+     var u = vec4(normalize(cross(n, this.VUP),true),0);
+     var v = vec4(normalize(cross(u,n)),0); 
+     var t = vec4(0.0, 0.0, 0.0, 1.0);
+     this.viewRotation = mat4(u, v, n, t);
+     this.viewRotation.matrix = true;
 };
 
 /**
@@ -54,9 +53,9 @@ Camera.prototype.calcUVN = function () {
  */
 Camera.prototype.calcViewMat = function () {
     var mv = mat4(1);  // identity - placeholder only
-// TO DO:  COMPLETE THIS CODE
-//    var eyeTranslate = ...
-//    var mv = ...
+	// TO DO:  COMPLETE THIS CODE
+   	var eyeTranslate = translate(-this.eye[0], -this.eye[1], -this.eye[2]); 
+    mv = mult(this.viewRotation,eyeTranslate);
     return mv;
 };
 
@@ -96,6 +95,7 @@ Camera.prototype.motion = function () {
             var dy = 0.05 * mouseState.dely;  // amount to pan along y
             //  TO DO: NEED TO IMPLEMENT HERE
             //  Calculate this.eye 
+            this.eye = mult(translate(dx,dy,0),this.eye);
             mouseState.startx = mouseState.x;
             mouseState.starty = mouseState.y;
             break;
@@ -103,6 +103,7 @@ Camera.prototype.motion = function () {
             var dx = 0.05 * mouseState.delx;  // amount to move backward/forward
             var dy = 0.05 * mouseState.dely;
             //   TO DO: NEED TO IMPLEMENT HERE
+            this.eye = mult(translate(0,0,dx), this.eye);
             //  Calculate this.eye 
             mouseState.startx = mouseState.x;
             mouseState.starty = mouseState.y;
@@ -157,30 +158,37 @@ Camera.prototype.keyAction = function (key) {
         case 'E':   // turn left
             console.log("turn left");
             // IMPLEMENT
+            this.viewRotation = mult(rotateY(-alpha), this.viewRotation);
             break;
-        case 'S':  // turn up   
+        case 'S':  // turn up  x 
             console.log(" turn up");
             // IMPLEMENT
+             this.viewRotation = mult(rotateX(alpha), this.viewRotation);
             break;
         case 'D':  // turn down
             console.log("turn down");
             // IMPLEMENT
+             this.viewRotation = mult(rotateX(-alpha), this.viewRotation);
             break;
         case 'X':  // bank right
             console.log("bank right");
             // IMPLEMENT
+            this.viewRotation = mult(rotateZ(alpha), this.viewRotation);
             break;
         case 'C':  // bank left
             console.log("bank left");
             // IMPLEMENT
+            this.viewRotation = mult(rotateZ(-alpha), this.viewRotation);
             break;
         case 'Q':  // move forward
             console.log("move forward");
             // IMPLEMENT
+            this.viewRotation = mult(translate(0,0,alpha), this.viewRotation);
             break;
         case 'A':  //  move backward
             console.log("move backward");
             // IMPLEMENT
+            this.viewRotation = mult(translate(0,0,-alpha), this.viewRotation);
             break;
         case 'R':  //  reset
             console.log("reset");

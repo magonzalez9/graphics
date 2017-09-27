@@ -10,7 +10,7 @@ function Helicopter () {
 	this.yPos = 0;
 	this.zPos = 1; 
 
-	this.pivotColumnTheta = 7; 
+	this.pivotColumnTheta = 2; 
 }
 Helicopter.prototype.draw = function(){
    stack.push(); 
