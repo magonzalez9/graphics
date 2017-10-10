@@ -2,15 +2,18 @@ var canvas;       // HTML 5 canvas
 var gl;           // webgl graphics context
 var vPosition;    // shader variable attrib location for vertices 
 var vColor;       // shader variable attrib location for color
+var vNormal; 
 var uColor;       // shader uniform variable location for color
 var uProjection;  //  shader uniform variable for projection matrix
 var uModel_view;  //  shader uniform variable for model-view matrix
 
 var camera = new Camera(); 
 var stack = new MatrixStack();
+var lighting = new Lighting(); 
 
 window.onload = function init()
 {   
+
     //set Event Handlers
     setKeyEventHandler();
     setMouseEventHandler();
@@ -30,6 +33,7 @@ window.onload = function init()
     gl.useProgram( program );
     
     shaderSetup();
+    lighting.setUp(); 
     
     Shapes.initShapes();  // create the primitive and other shapes       
     
@@ -50,7 +54,7 @@ function shaderSetup() {
     // We will need these in setting up buffers.
     vPosition = gl.getAttribLocation(program, "vPosition");
     vColor = gl.getAttribLocation(program, "vColor"); // we won't use vertex here
-                            // colors but we keep it in for possible use later.
+    vNormal = gl.getAttribLocation(program, "vNormal");                       // colors but we keep it in for possible use later.
    
     // get handles for shader uniform variables: 
     uColor = gl.getUniformLocation(program, "uColor");  // uniform color
@@ -81,9 +85,9 @@ function render()
     Shapes.axis.draw();
 
     stack.push();
-    Shapes.helicopter.draw(); 
-     //gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
-     //Shapes.drawPrimitive(Shapes.cube);
+    //Shapes.helicopter.draw(); 
+    gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
+    Shapes.drawPrimitive(Shapes.cube);
     stack.pop();
    
 }
