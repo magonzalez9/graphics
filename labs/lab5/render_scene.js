@@ -79,11 +79,20 @@ function render()
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     Shapes.axis.draw();
 
+   
     stack.push();
-   // Shapes.helicopter.draw(); 
+    stack.multiply(translate(0,.95,0));
+    stack.multiply(scalem(.1,.5,.1)); 
+    Shapes.drawPrimitive(Shapes.cube); 
+    stack.pop(); 
+
+    stack.push();
+    // Shapes.helicopter.draw(); 
     gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
     Shapes.drawPrimitive(Shapes.cone);
     stack.pop();
+
+   
    
 }
 

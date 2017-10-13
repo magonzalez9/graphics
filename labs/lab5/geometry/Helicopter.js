@@ -8,7 +8,7 @@ function Helicopter () {
     //Helicopter Position
 	this.xPos = 0; 
 	this.yPos = 0;
-	this.zPos = 1; 
+	this.zPos = 0; 
 
 	this.pivotColumnTheta = 2; 
 }
