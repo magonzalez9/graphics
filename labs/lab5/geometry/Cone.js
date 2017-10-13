@@ -1,4 +1,6 @@
 //Marco Gonzalez
+//Lab Partner Dlan Miyashiro
+//Lab 5 
 
 function Cone(numDivisions) {
 
@@ -22,8 +24,8 @@ function Cone(numDivisions) {
         this.vertices.push(vec4(Math.cos(nextAngle), -1, Math.sin(nextAngle),1));
 
         this.normals.push(vec4(0, -1, 0,0)); // Center vertice
-        this.normals.push(vec4(Math.cos(currentAngle), -1, Math.sin(currentAngle),0));
-        this.normals.push(vec4(Math.cos(nextAngle), -1, Math.sin(nextAngle),0));
+        this.normals.push(vec4(0, -1, 0,0));
+        this.normals.push(vec4(0, -1, 0,0));
 
         //Set colors
         this.colors.push(vec4(1.0,1.0,0.0,1));

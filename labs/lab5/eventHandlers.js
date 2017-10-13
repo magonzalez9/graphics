@@ -105,10 +105,18 @@ function setMouseEventHandler() {
  * @return {undefined}
  */
 function setKeyEventHandler() {
+
     window.onkeydown = function (e) {
         var c = String.fromCharCode(e.keyCode);
         camera.keyAction(c);
         document.getElementById("keypress").innerHTML = "<b>Key pressed:</b> " + c + "<br>";
         render();
     };
+
+    var basePos = lighting.light_position; 
+document.getElementById("slider").oninput = function(){
+    lighting.light_position = mult(rotateY(document.getElementById("slider").value), basePos);
+    render(); 
 }
+}
+

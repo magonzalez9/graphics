@@ -1,5 +1,5 @@
 //Marco Gonzalez
-//Lab Partner: Rachel Harvill
+//Lab Partner: Dolan Miyashiro
 //September 12, 2017
 
 function Cylinder(numDivisions) {

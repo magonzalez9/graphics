@@ -71,7 +71,7 @@ function render()
     var viewMat = camera.calcViewMat();   // View matrix
 
     var newLight = mult(viewMat, lighting.light_position);
-   gl.uniform4fv(uLight_position, newLight); 
+    gl.uniform4fv(uLight_position, newLight); 
 
     stack.clear();
     stack.multiply(viewMat);    
@@ -81,16 +81,35 @@ function render()
 
    
     stack.push();
-    stack.multiply(translate(0,.95,0));
-    stack.multiply(scalem(.1,.5,.1)); 
+    stack.multiply(translate(lighting.light_position[0],lighting.light_position[1],lighting.light_position[2]));
+    stack.multiply(scalem(.2,.2,.2));
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     Shapes.drawPrimitive(Shapes.cube); 
     stack.pop(); 
 
+    // Draw Cylinder, Cone or Cylinder
     stack.push();
-    // Shapes.helicopter.draw(); 
+    //Shapes.helicopter.draw(); 
+    stack.multiply(translate(0,2,0,1));
     gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     Shapes.drawPrimitive(Shapes.cone);
     stack.pop();
+
+    stack.push();
+    Shapes.helicopter.draw(); 
+    stack.multiply(translate(2,2,0,1));
+    gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    Shapes.drawPrimitive(Shapes.cylinder);
+    stack.pop();
+
+    //Base
+    // stack.push();
+    // stack.multiply(scalem(4,.1,4));
+    // gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
+    // Shapes.drawPrimitive(Shapes.cube);  // draw blade
+    // stack.pop(); 
 
    
    
