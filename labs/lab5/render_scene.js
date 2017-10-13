@@ -6,6 +6,7 @@ var vNormal;
 var uColor;       // shader uniform variable location for color
 var uProjection;  //  shader uniform variable for projection matrix
 var uModel_view;  //  shader uniform variable for model-view matrix
+var program; 
 
 var camera = new Camera(); 
 var stack = new MatrixStack();
@@ -13,7 +14,6 @@ var lighting = new Lighting();
 
 window.onload = function init()
 {   
-
     //set Event Handlers
     setKeyEventHandler();
     setMouseEventHandler();
@@ -29,15 +29,14 @@ window.onload = function init()
     gl.enable(gl.DEPTH_TEST);
 
     //  Load shaders
-    var program = initShaders( gl, "vertex-shader", "fragment-shader" );
-    gl.useProgram( program );
+    program = initShaders( gl, "vertex-shader", "fragment-shader" );
+    gl.useProgram(program);
     
     shaderSetup();
-    lighting.setUp(); 
-    
     Shapes.initShapes();  // create the primitive and other shapes       
-    
-    render();
+    lighting.setUp(); 
+
+   render();
 };
 
 /**
@@ -46,9 +45,6 @@ window.onload = function init()
  * @return {undefined}
  */
 function shaderSetup() {
-    //  Load shaders
-    var program = initShaders(gl, "vertex-shader", "fragment-shader");
-    gl.useProgram(program);
 
     // get handles for shader attribute variables. 
     // We will need these in setting up buffers.
@@ -65,6 +61,8 @@ function shaderSetup() {
 function render()
 {
    
+
+
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     var projMat = camera.calcProjectionMat();   // Projection matrix  
@@ -72,22 +70,19 @@ function render()
     
     var viewMat = camera.calcViewMat();   // View matrix
 
+    var newLight = mult(viewMat, lighting.light_position);
+   gl.uniform4fv(uLight_position, newLight); 
+
     stack.clear();
-    stack.multiply(viewMat);
-    // Need these 2 lines since camera is sitting at origin. 
-    // Without them, you would be sitting inside the cube.
-    // REMOVE once camera controls are working
-    // stack.multiply(translate(0, 0, -10)); 
-    // gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    
+    stack.multiply(viewMat);    
     
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     Shapes.axis.draw();
 
     stack.push();
-    //Shapes.helicopter.draw(); 
+   // Shapes.helicopter.draw(); 
     gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
-    Shapes.drawPrimitive(Shapes.cube);
+    Shapes.drawPrimitive(Shapes.cone);
     stack.pop();
    
 }

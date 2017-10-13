@@ -29,7 +29,9 @@ function Cone(numDivisions) {
         this.colors.push(vec4(0.1,1.0,0.6,1));
 
         //Top disk
-       this.vertices.push(vec4(0, 2, 0,1)); // Center vertice
+       this.vertices.push(vec4(0, 1, 0,1)); // Center vertice
+       this.vertices.push(vec4(Math.cos(nextAngle), -1, Math.sin(nextAngle),1));
+       this.vertices.push(vec4(Math.cos(currentAngle), -1, Math.sin(currentAngle),1));
 
 
        this.colors.push(vec4(0.0,0.0,0.0,1));   

@@ -16,7 +16,7 @@ function Lighting() {
     // Important:  These light coordinates are in World Coordinates. 
     //             Before sending them to the vertex shader, we need 
     //             to convert to eye coordinates. This is done in the render method. 
-    this.light_position = vec4(6, 8, 0, 1);
+    this.light_position = vec4(0, -8, 0, 1);
 
     // Light colors all set to white at the moment
     this.ambientColor = vec4(1.0,1.0,1.0,1.0);
@@ -33,7 +33,7 @@ function Lighting() {
     this.shininess = 50.0;
 }
 
-Lighting.prototype.setUp = function () {
+Lighting.prototype.setUp = function () { 
     var ambient_product = scale(this.ka * this.intensity, this.ambientColor);
     var diffuse_product = scale(this.kd * this.intensity, this.diffuseColor);
     var specular_product = scale(this.ks * this.intensity, this.specularColor);

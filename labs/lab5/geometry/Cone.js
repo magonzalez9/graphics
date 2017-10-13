@@ -21,13 +21,24 @@ function Cone(numDivisions) {
         this.vertices.push(vec4(Math.cos(currentAngle), -1, Math.sin(currentAngle),1));
         this.vertices.push(vec4(Math.cos(nextAngle), -1, Math.sin(nextAngle),1));
 
+        this.normals.push(vec4(0, -1, 0,0)); // Center vertice
+        this.normals.push(vec4(Math.cos(currentAngle), -1, Math.sin(currentAngle),0));
+        this.normals.push(vec4(Math.cos(nextAngle), -1, Math.sin(nextAngle),0));
+
         //Set colors
         this.colors.push(vec4(1.0,1.0,0.0,1));
         this.colors.push(vec4(0.7,0.0, 1.0,1));
         this.colors.push(vec4(0.1,1.0,0.6,1));
 
-        //Top disk
-       this.vertices.push(vec4(0, 2, 0,1)); // Center vertice
+        //Side Triangles
+       this.vertices.push(vec4(0, 1, 0,1)); // Center vertice
+       this.vertices.push(vec4(Math.cos(nextAngle), -1, Math.sin(nextAngle),1));
+       this.vertices.push(vec4(Math.cos(currentAngle), -1, Math.sin(currentAngle),1));
+
+       this.normals.push(vec4(0,1,0,0)); 
+       this.normals.push(vec4(Math.cos(nextAngle),1,Math.sin(nextAngle),0));
+       this.normals.push(vec4(Math.cos(currentAngle),1,Math.sin(currentAngle),0));
+
 
 
        this.colors.push(vec4(0.0,0.0,0.0,1));   

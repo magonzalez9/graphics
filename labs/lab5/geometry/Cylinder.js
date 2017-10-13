@@ -23,19 +23,36 @@ function Cylinder(numDivisions) {
         this.vertices.push(vec4(Math.cos(currentAngle), 1, Math.sin(currentAngle),1));
         this.vertices.push(vec4(Math.cos(nextAngle), 1, Math.sin(nextAngle),1));
 
+        this.normals.push(vec4(0,1,0,0)); 
+        this.normals.push(vec4(0,1,0,0));
+        this.normals.push(vec4(0,1,0,0)); 
+
+
         //Bottom disk
         this.vertices.push(vec4(0, -1, 0,1)); // Center vertice
         this.vertices.push(vec4(Math.cos(currentAngle), -1, Math.sin(currentAngle),1));
         this.vertices.push(vec4(Math.cos(nextAngle), -1, Math.sin(nextAngle),1));
+
+        this.normals.push(vec4(0,-1,0,0)); 
+        this.normals.push(vec4(0,-1,0,0));
+        this.normals.push(vec4(0,-1,0,0)); 
 
         //Connect triangles
         this.vertices.push(vec4(Math.cos(currentAngle), 1, Math.sin(currentAngle),1));
         this.vertices.push(vec4(Math.cos(currentAngle), -1, Math.sin(currentAngle),1));
         this.vertices.push(vec4(Math.cos(nextAngle), 1, Math.sin(nextAngle),1));
 
+        this.normals.push(vec4(Math.cos(currentAngle), 0, Math.sin(currentAngle),0)); 
+        this.normals.push(vec4(Math.cos(currentAngle), 0, Math.sin(currentAngle),0)); 
+        this.normals.push(vec4(Math.cos(nextAngle), 0, Math.sin(nextAngle),0)); 
+
         this.vertices.push(vec4(Math.cos(currentAngle), -1, Math.sin(currentAngle),1));
         this.vertices.push(vec4(Math.cos(nextAngle), 1, Math.sin(nextAngle),1));
         this.vertices.push(vec4(Math.cos(nextAngle), -1, Math.sin(nextAngle),1));
+
+        this.normals.push(vec4(Math.cos(currentAngle), 0, Math.sin(currentAngle),0)); 
+        this.normals.push(vec4(Math.cos(nextAngle), 0, Math.sin(nextAngle),0)); 
+        this.normals.push(vec4(Math.cos(nextAngle), 0, Math.sin(nextAngle),0)); 
 
          //Set colors
         this.colors.push(vec4(0,0,0.0,1));

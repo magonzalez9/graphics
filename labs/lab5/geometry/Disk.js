@@ -19,8 +19,11 @@ function Disk(numDivisions) {
         nextAngle = this.theta * (i+1);
 
         this.vertices[i*3] = vec4(0, 0, 0,1); // Center vertice
+        this.normals[i*3] = vec4(0,1,0,0); 
         this.vertices[i*3 + 1] = vec4(Math.cos(currentAngle), 0, Math.sin(currentAngle),1);
+        this.normals[i*3 + 1] = vec4(0,1,0,0); 
         this.vertices[i*3 + 2] = vec4(Math.cos(nextAngle), 0, Math.sin(nextAngle),1);
+        this.normals[i*3 +2] = vec4(0,1,0,0);
 
         //Set colors
         this.colors[i*3] = vec4(1.0,1.0,0.0,1);
