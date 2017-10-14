@@ -97,7 +97,7 @@ function render()
     stack.pop();
 
     stack.push();
-    Shapes.helicopter.draw(); 
+   // Shapes.helicopter.draw(); 
     stack.multiply(translate(2,2,0,1));
     gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
