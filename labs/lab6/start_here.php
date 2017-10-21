@@ -48,7 +48,7 @@
 
             void main()
             {
-
+                vec4 myColor = uColor; //getColor()? 
                 // Normalize the input lighting vectors
                 vec3 N = normalize(fN);
                 vec3 E = normalize(fE);
@@ -56,13 +56,13 @@
 
                 vec3 H = normalize( L + E );
 
-                vec4 ambient = uAmbient_product*uColor;
+                vec4 ambient = uAmbient_product*uColor; // myColor
 
                 float diffDot = max(dot(L, N), 0.0);
-                vec4 diffuse = diffDot*uDiffuse_product*uColor;
+                vec4 diffuse = diffDot*uDiffuse_product*uColor; //myColor
 
                 float specDot = pow(max(dot(N, H), 0.0), uShininess);
-                vec4 specular = specDot*uSpecular_product*uColor;
+                vec4 specular = specDot*uSpecular_product*uColor; //myColor
 
                 // discard the specular highlight if the light's behind the vertex
                 if( dot(L, N) < 0.0 ) {
@@ -83,11 +83,13 @@
         <script type="text/javascript" src="eventHandlers.js"></script> 
         <script type="text/javascript" src="Common/MV.js"></script>
         <script type="text/javascript" src="Common/MatrixStack.js"></script>
+        <script type="text/javascript" src="geometry/FractalEDM.js"></script>
         <script type="text/javascript" src="geometry/Cube.js"></script>
         <script type="text/javascript" src="geometry/Cone.js"></script>
         <script type="text/javascript" src="geometry/Cylinder.js"></script>
         <script type="text/javascript" src="geometry/Disk.js"></script>
         <script type="text/javascript" src="geometry/Helicopter.js"></script>
+         <script type="text/javascript" src="geometry/Fractal.js"></script>
         <script type="text/javascript" src="geometry/Axis.js"></script>
         <script type="text/javascript" src="geometry/Shapes.js"></script>
         <script type="text/javascript" src="Camera.js"></script>

@@ -79,7 +79,7 @@ function render()
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     Shapes.axis.draw();
 
-   
+    //Draw Cube Camera
     stack.push();
     stack.multiply(translate(lighting.light_position[0],lighting.light_position[1],lighting.light_position[2]));
     stack.multiply(scalem(.2,.2,.2));
@@ -87,21 +87,12 @@ function render()
     Shapes.drawPrimitive(Shapes.cube); 
     stack.pop(); 
 
-    // Draw Cylinder, Cone or Cylinder
     stack.push();
-    //Shapes.helicopter.draw(); 
-    stack.multiply(translate(0,2,0,1));
-    gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
-    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    Shapes.drawPrimitive(Shapes.cone);
-    stack.pop();
-
-    stack.push();
-   // Shapes.helicopter.draw(); 
+    // Shapes.helicopter.draw(); 
     stack.multiply(translate(2,2,0,1));
     gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    Shapes.drawPrimitive(Shapes.cylinder);
+    //Shapes.drawPrimitive(Shapes.fractal);
     stack.pop();
 
     //Base

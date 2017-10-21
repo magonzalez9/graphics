@@ -9,6 +9,7 @@
 var Shapes = {};   // set up Shapes namespace
 
 Shapes.cube = new Cube();  
+Shapes.fractal = new Fractal(20); 
 Shapes.axis = new Axis();
 Shapes.cylinder = new Cylinder(20); 
 Shapes.disk = new Disk(20); 
@@ -20,6 +21,7 @@ Shapes.initShapes = function () {
      Shapes.initBuffers(Shapes.cylinder);
      Shapes.initBuffers(Shapes.disk);
      Shapes.initBuffers(Shapes.cone); 
+     Shapes.initBuffers(Shapes.fractal);
    
     // TO DO: ADD OTHER SHAPES 
     Shapes.axis.initBuffer();
