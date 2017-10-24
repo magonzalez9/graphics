@@ -83,7 +83,7 @@
         <script type="text/javascript" src="eventHandlers.js"></script> 
         <script type="text/javascript" src="Common/MV.js"></script>
         <script type="text/javascript" src="Common/MatrixStack.js"></script>
-        <script type="text/javascript" src="geometry/FractalEDM.js"></script>
+        <script type="text/javascript" src="geometry/FractalDEM.js"></script>
         <script type="text/javascript" src="geometry/Cube.js"></script>
         <script type="text/javascript" src="geometry/Cone.js"></script>
         <script type="text/javascript" src="geometry/Cylinder.js"></script>

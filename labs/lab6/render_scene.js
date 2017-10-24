@@ -88,19 +88,13 @@ function render()
     stack.pop(); 
 
     stack.push();
-    // Shapes.helicopter.draw(); 
-    stack.multiply(translate(2,2,0,1));
+    stack.multiply(scalem(2,6,2));
     gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    //Shapes.drawPrimitive(Shapes.fractal);
+    Shapes.drawPrimitive(Shapes.fractal);
     stack.pop();
 
-    //Base
-    // stack.push();
-    // stack.multiply(scalem(4,.1,4));
-    // gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); // set view transform
-    // Shapes.drawPrimitive(Shapes.cube);  // draw blade
-    // stack.pop(); 
+
 
    
    
