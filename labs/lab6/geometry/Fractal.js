@@ -27,13 +27,13 @@ for (i = 0; i < f.gridSize; i++){
 	    this.vertices.push(i*scale, f.getH(i,j+1), (j+1)*scale,1);
 	    this.vertices.push((i+1)*scale, f.getH(i+1, j+1), (j+1)*scale,1); 
 
-	    this.normals.push(0,1,0,0);
-	    this.normals.push(0,1,0,0);
-	    this.normals.push(0,1,0,0);
+	    this.normals.push(calcNormal(i,j));
+	    this.normals.push(calcNormal(i,j));
+	    this.normals.push(calcNormal(i,j));
 
-	    this.normals.push(0,1,0,0);
-	    this.normals.push(0,1,0,0);
-	    this.normals.push(0,1,0,0);
+	    this.normals.push(calcNormal(i,j));
+	    this.normals.push(calcNormal(i,j));
+	    this.normals.push(calcNormal(i,j));
 
 	    this.colors.push(1.0, 1.0, 0.0, 1.0);
 	    this.colors.push(1.0, 1.0, 0.0, 1.0);
@@ -47,11 +47,14 @@ for (i = 0; i < f.gridSize; i++){
 	}
 }
 
-// function calcNormal(i, j){
-// var vOne = vec4();
-// var vTwo = vec4();
+function calcNormal(i, j){
+var vOne = vec4(i+1,f.getH(i,j),j,1);
+var vTwo = vec4(i, f.getH(i,j),j+1,1);
+
+var v = vec4(normalize(cross(vOne,vTwo)),1);
+return v;  
 
 
-// }
+}
   
 }
