@@ -3,7 +3,7 @@
 
 function Fractal() {
 
-    var size = 4; 
+    var size = 8; 
     var f = new FractalDEM(size); 
 
     this.name = "fractal";
@@ -12,7 +12,7 @@ function Fractal() {
     this.normals = [];
     this.texCoords = [];
     this.numVertices = f.gridSize*f.gridSize*6; 
-    var scale =3/size; 
+    var scale =6/f.gridSize; 
 
 for (i = 0; i < f.gridSize; i++){
 
@@ -27,34 +27,36 @@ for (i = 0; i < f.gridSize; i++){
 	    this.vertices.push(i*scale, f.getH(i,j+1), (j+1)*scale,1);
 	    this.vertices.push((i+1)*scale, f.getH(i+1, j+1), (j+1)*scale,1); 
 
-	    this.normals.push(calcNormal(i,j));
-	    this.normals.push(calcNormal(i,j));
-	    this.normals.push(calcNormal(i,j));
-
-	    this.normals.push(calcNormal(i,j));
-	    this.normals.push(calcNormal(i,j));
+	    this.normals.push(calcNormal(i+1, j+1));
+	    this.normals.push(calcNormal(i+1, j));
 	    this.normals.push(calcNormal(i,j));
 
-	    this.colors.push(1.0, 1.0, 0.0, 1.0);
-	    this.colors.push(1.0, 1.0, 0.0, 1.0);
-	    this.colors.push(1.0, 1.0, 0.0, 1.0);
+	    this.normals.push(calcNormal(i,j));
+	    this.normals.push(calcNormal(i,j+1));
+	    this.normals.push(calcNormal(i+1, j+1));
 
-	    this.colors.push(1.0, 1.0, 0.0, 1.0);
-	    this.colors.push(1.0, 1.0, 0.0, 1.0);
-	    this.colors.push(1.0, 1.0, 0.0, 1.0);
+	    this.colors.push(.7, .3, 1, 1.0);
+	    this.colors.push(.7, .3, 1, 1.0);
+	    this.colors.push(.7, .3, 1, 1.0);
+	    this.colors.push(.7, .3, 1, 1.0);
+	    this.colors.push(.7, .3, 1, 1.0);
+	    this.colors.push(.7, .3, 1, 1.0);
 
 
 	}
 }
 
 function calcNormal(i, j){
-var vOne = vec4(i+1,f.getH(i,j),j,1);
-var vTwo = vec4(i, f.getH(i,j),j+1,1);
+var vOne = vec4(2*scale,f.getH(i+1,j)-f.getH(i-1,j),0,0);
+var vTwo = vec4(0,f.getH(i,j+1)-f.getH(i,j-1),2*scale,0);
 
-var v = vec4(normalize(cross(vOne,vTwo)),1);
-return v;  
+var v = vec4(normalize(cross(vOne,vTwo)),0);
+return negate(v);  
 
+}
 
+function getColor(){
+	return vec4(.7, .3, 1, 1.0);
 }
   
 }

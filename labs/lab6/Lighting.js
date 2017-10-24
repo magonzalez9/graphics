@@ -16,7 +16,7 @@ function Lighting() {
     // Important:  These light coordinates are in World Coordinates. 
     //             Before sending them to the vertex shader, we need 
     //             to convert to eye coordinates. This is done in the render method. 
-     this.light_position = vec4(6, 8, 6, 1);
+     this.light_position = vec4(9, 10, 8, 1);
 
     // Light colors all set to white at the moment
     this.ambientColor = vec4(1.0,1.0,1.0,1.0);
