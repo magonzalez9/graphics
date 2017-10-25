@@ -89,7 +89,7 @@ function render()
 
     stack.push();
     stack.multiply(scalem(2,6,2));
-    //gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
+    gl.uniform4fv(uColor, vec4(1.0, 0.0, 0.0, 1.0));
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     Shapes.drawPrimitive(Shapes.fractal);
     stack.pop();

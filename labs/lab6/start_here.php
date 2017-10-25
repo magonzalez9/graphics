@@ -18,9 +18,11 @@
             varying  vec3 fE;
             varying  vec3 fL;
             varying vec4 color;
+            varying float yVal;
 
             void main()
             {
+                yVal = vPosition.y;
                 color = vColor; 
                 fN = normalize( uModel_view*vNormal ).xyz;
                 fE = -(uModel_view*vPosition).xyz;
@@ -39,6 +41,9 @@
             varying vec3 fN;
             varying vec3 fL;
             varying vec3 fE;
+            varying vec4 color;
+            varying float yVal;
+             float h0;
 
             // incoming uniform values
             uniform vec4  uColor;
@@ -46,9 +51,30 @@
             uniform vec4  uAmbient_product, uDiffuse_product, uSpecular_product;
             uniform float uShininess;
 
+             vec4 getColor(float height){
+                //r g b
+                vec4 c1 = vec4(0.0, 0.0, 1.0, 1.0); //blue
+                vec4 c2 = vec4(0.0, .7, 0.0, 1.0); //green
+                vec4 c3 = vec4(0.4, 0.2, 0.2, 1.0);//brown
+                vec4 c4 = vec4(1.0, 1.0, 1.0, 1.0);//white
+                if (height == 0.0){
+                    return c1;
+                }else if (height < 0.1){
+                    h0 = height - yVal; 
+                    return mix(c1, c2, smoothstep(0.0,.1,yVal) );
+                }else if (height < 0.6){
+                   return mix(c2, c3, smoothstep(0.1,0.4,yVal) );
+                }else if(height < 0.7){
+                    return mix(c3,c4, smoothstep(0.5,.7,yVal) );
+                }else{
+                    return c4;
+                }
+            }
+
             void main()
             {
-                vec4 myColor = uColor; //getColor()? 
+                vec4 myColor = getColor(yVal); //getColor()?
+
                 // Normalize the input lighting vectors
                 vec3 N = normalize(fN);
                 vec3 E = normalize(fE);
@@ -56,13 +82,13 @@
 
                 vec3 H = normalize( L + E );
 
-                vec4 ambient = uAmbient_product*uColor; // myColor
+                vec4 ambient = uAmbient_product*myColor; // myColor
 
                 float diffDot = max(dot(L, N), 0.0);
-                vec4 diffuse = diffDot*uDiffuse_product*uColor; //myColor
+                vec4 diffuse = diffDot*uDiffuse_product*myColor; //myColor
 
                 float specDot = pow(max(dot(N, H), 0.0), uShininess);
-                vec4 specular = specDot*uSpecular_product*uColor; //myColor
+                vec4 specular = specDot*uSpecular_product*myColor; //myColor
 
                 // discard the specular highlight if the light's behind the vertex
                 if( dot(L, N) < 0.0 ) {
