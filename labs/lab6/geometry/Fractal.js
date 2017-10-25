@@ -27,13 +27,13 @@ for (i = 0; i < f.gridSize; i++){
 	    this.vertices.push(i*scale, f.getH(i,j+1), (j+1)*scale,1);
 	    this.vertices.push((i+1)*scale, f.getH(i+1, j+1), (j+1)*scale,1); 
 
-	    this.normals.push(calcNormal(i+1, j+1));
-	    this.normals.push(calcNormal(i+1, j));
-	    this.normals.push(calcNormal(i,j));
+	    this.normals.push(this.calcNormal(i+1, j+1));
+	    this.normals.push(this.calcNormal(i+1, j));
+	    this.normals.push(this.calcNormal(i,j));
 
-	    this.normals.push(calcNormal(i,j));
-	    this.normals.push(calcNormal(i,j+1));
-	    this.normals.push(calcNormal(i+1, j+1));
+	    this.normals.push(this.calcNormal(i,j));
+	    this.normals.push(this.calcNormal(i,j+1));
+	    this.normals.push(this.calcNormal(i+1, j+1));
 
 	    this.colors.push(.7, .3, 1, 1.0);
 	    this.colors.push(.7, .3, 1, 1.0);
@@ -46,7 +46,7 @@ for (i = 0; i < f.gridSize; i++){
 	}
 }
 
-function calcNormal(i, j){
+Fractal.prototype.calcNormal = function(i, j){
 var vOne = vec4(2*scale,f.getH(i+1,j)-f.getH(i-1,j),0,0);
 var vTwo = vec4(0,f.getH(i,j+1)-f.getH(i,j-1),2*scale,0);
 
