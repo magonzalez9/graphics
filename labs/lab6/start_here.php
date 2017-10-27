@@ -43,7 +43,7 @@
             varying vec3 fE;
             varying vec4 color;
             varying float yVal;
-             float h0;
+
 
             // incoming uniform values
             uniform vec4  uColor;
@@ -54,18 +54,18 @@
              vec4 getColor(float height){
                 //r g b
                 vec4 c1 = vec4(0.0, 0.0, 1.0, 1.0); //blue
-                vec4 c2 = vec4(0.0, .7, 0.0, 1.0); //green
-                vec4 c3 = vec4(0.4, 0.2, 0.2, 1.0);//brown
+                vec4 c2 = vec4(0.05, .55, 0.0, 1.0); //green
+                vec4 c3 = vec4(0.3, 0.2, 0.15, 1.0);//brown
                 vec4 c4 = vec4(1.0, 1.0, 1.0, 1.0);//white
+
                 if (height == 0.0){
                     return c1;
                 }else if (height < 0.1){
-                    h0 = height - yVal; 
-                    return mix(c1, c2, smoothstep(0.0,.1,yVal) );
+                    return mix(c1, c2, smoothstep(0.0,.01,yVal) );
                 }else if (height < 0.6){
-                   return mix(c2, c3, smoothstep(0.1,0.4,yVal) );
-                }else if(height < 0.7){
-                    return mix(c3,c4, smoothstep(0.5,.7,yVal) );
+                   return mix(c2, c3, smoothstep(0.1,0.6,yVal) );
+                }else if(height < 0.85){
+                    return mix(c3,c4, smoothstep(0.6,.7,yVal) );
                 }else{
                     return c4;
                 }
@@ -73,7 +73,7 @@
 
             void main()
             {
-                vec4 myColor = getColor(yVal); //getColor()?
+                vec4 myColor = getColor(yVal); //getColor()
 
                 // Normalize the input lighting vectors
                 vec3 N = normalize(fN);
