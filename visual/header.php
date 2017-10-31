@@ -46,7 +46,8 @@
             <li><a href="http://localhost/graphics/labs/lab3/Lab3_Transformations/start_here.php">Lab 3</a></li>
             <li><a href="http://localhost/graphics/labs/lab4/start_here.php">Lab 4</a></li> 
             <li><a href="http://localhost/graphics/labs/lab5/start_here.php">Lab 5</a></li>
-             <li><a href="http://localhost/graphics/labs/lab6/start_here.php">Lab 6</a></li> 
+            <li><a href="http://localhost/graphics/labs/lab6/start_here.php">Lab 6</a></li> 
+            <li><a href="http://localhost/graphics/labs/lab7/start_here.php">Lab 7</a></li> 
           </ul>
         </li>
         <li><a href="http://localhost/graphics/about.php">About</a></li>

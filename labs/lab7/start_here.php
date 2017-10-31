@@ -8,6 +8,9 @@
             attribute vec4 vPosition;
             attribute vec4 vNormal;
             attribute vec4 vColor;
+            attribute vec2 vTexCoords;
+
+
 
             uniform vec4 uLight_position; // assumed to be in eye coordinates. 
             uniform mat4 uProjection;
@@ -18,9 +21,11 @@
             varying  vec3 fE;
             varying  vec3 fL;
             varying vec4 color;
+            varying vec2 texCoord;
 
             void main()
             {
+            	texCoord = vTexCoords;
                 color = vColor; 
                 fN = normalize( uModel_view*vNormal ).xyz;
                 fE = -(uModel_view*vPosition).xyz;
@@ -39,15 +44,19 @@
             varying vec3 fN;
             varying vec3 fL;
             varying vec3 fE;
+            varying vec2 texCoord;
 
             // incoming uniform values
             uniform vec4  uColor;
             uniform vec4  uLight_position;
             uniform vec4  uAmbient_product, uDiffuse_product, uSpecular_product;
             uniform float uShininess;
+            uniform sampler2D uTexture;
 
             void main()
             {
+
+            	var myColor = texture2D( uTexture, texCoord );
 
                 // Normalize the input lighting vectors
                 vec3 N = normalize(fN);
@@ -56,13 +65,13 @@
 
                 vec3 H = normalize( L + E );
 
-                vec4 ambient = uAmbient_product*uColor;
+                vec4 ambient = uAmbient_product*myColor;
 
                 float diffDot = max(dot(L, N), 0.0);
-                vec4 diffuse = diffDot*uDiffuse_product*uColor;
+                vec4 diffuse = diffDot*uDiffuse_product*myColor;
 
                 float specDot = pow(max(dot(N, H), 0.0), uShininess);
-                vec4 specular = specDot*uSpecular_product*uColor;
+                vec4 specular = specDot*uSpecular_product*myColor;
 
                 // discard the specular highlight if the light's behind the vertex
                 if( dot(L, N) < 0.0 ) {
@@ -83,6 +92,8 @@
         <script type="text/javascript" src="eventHandlers.js"></script> 
         <script type="text/javascript" src="Common/MV.js"></script>
         <script type="text/javascript" src="Common/MatrixStack.js"></script>
+        <script type="text/javascript" src="textures/Checkerboard.js"></script>
+        <script type="text/javascript" src="textures/ImageTexture.js"></script>
         <script type="text/javascript" src="geometry/Cube.js"></script>
         <script type="text/javascript" src="geometry/Cone.js"></script>
         <script type="text/javascript" src="geometry/Cylinder.js"></script>
@@ -93,7 +104,7 @@
         <script type="text/javascript" src="Camera.js"></script>
         <script type="text/javascript" src="render_scene.js"></script>
 
-        <h2> Lab 5: Lighting</h2>
+        <h2> Lab 7: Textures</h2>
         <table>
             <tr>
                 <td>
