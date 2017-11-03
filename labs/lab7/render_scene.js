@@ -8,12 +8,15 @@ var vTexCoords;
 var uProjection;  //  shader uniform variable for projection matrix
 var uModel_view;  //  shader uniform variable for model-view matrix
 var program; 
+var checkerboard; 
+var stripes;
+var fuzzy; 
+var imageTexture; 
 
 var camera = new Camera(); 
 var stack = new MatrixStack();
 var lighting = new Lighting(); 
-var checkerboard = new Checkerboard();
-var imageTexture = new ImageTexture("textures/test.jpg");
+
 
 window.onload = function init()
 {   
@@ -22,9 +25,12 @@ window.onload = function init()
     setMouseEventHandler();
     
     canvas = document.getElementById( "gl-canvas" );
+   
     
     gl = WebGLUtils.setupWebGL( canvas );
     if ( !gl ) { alert( "WebGL isn't available" ); }
+
+    
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor(0.309, 0.505, 0.74, 1.0);
@@ -34,6 +40,11 @@ window.onload = function init()
     //  Load shaders
     program = initShaders( gl, "vertex-shader", "fragment-shader" );
     gl.useProgram(program);
+
+     checkerboard = new Checkerboard();
+     stripes = new Stripes();
+     fuzzy = new Fuzzy(); 
+     imageTexture = new ImageTexture("textures/test.jpg");
     
     shaderSetup();
     Shapes.initShapes();  // create the primitive and other shapes       
@@ -54,7 +65,7 @@ function shaderSetup() {
     vPosition = gl.getAttribLocation(program, "vPosition");
     vColor = gl.getAttribLocation(program, "vColor"); // we won't use vertex here
     vNormal = gl.getAttribLocation(program, "vNormal"); // colors but we keep it in for possible use later.
-
+    vTexCoords = gl.getAttribLocation(program, "vTexCoords");
    
     // get handles for shader uniform variables: 
     uTexture = gl.getUniformLocation(program, "uTexture");
@@ -94,7 +105,7 @@ function render()
 
     // Draw Cylinder, Cone or Cylinder
     // stack.push();
-    // //Shapes.helicopter.draw(); 
+    //Shapes.helicopter.draw(); 
     // stack.multiply(translate(0,2,0,1));
     // gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
     // gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
@@ -102,11 +113,11 @@ function render()
     // stack.pop();
 
     stack.push();
-    //stack.multiply(translate(2,2,0,1));
-    //gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
+    //stack.multiply(scalem(5,5,5));
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    imageTexture.activate(); 
-    Shapes.drawPrimitive(Shapes.cube);
+    checkerboard.activate(); 
+    Shapes.drawPrimitive(Shapes.disk);
+    //Shapes.helicopter.draw(); 
     stack.pop();
 
    

@@ -66,11 +66,12 @@ Shapes.drawPrimitive = function (primitive) {
     gl.enableVertexAttribArray(vColor);
     gl.vertexAttribPointer(vColor, 4, gl.FLOAT, false, 0, 0);
 
-    //Bind buffer form normal ERROR HERE
+    //Bind buffer form normal
     gl.bindBuffer(gl.ARRAY_BUFFER, primitive.normalBuffer);
     gl.enableVertexAttribArray(vNormal);
     gl.vertexAttribPointer(vNormal, 4, gl.FLOAT, false, 0, 0);
 
+    //Bind buffer for texCoords
     gl.bindBuffer(gl.ARRAY_BUFFER, primitive.texBuffer);
     gl.enableVertexAttribArray(vTexCoords);
     gl.vertexAttribPointer(vTexCoords, 2, gl.FLOAT, false, 0, 0);

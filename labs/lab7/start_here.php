@@ -21,12 +21,12 @@
             varying  vec3 fE;
             varying  vec3 fL;
             varying vec4 color;
-            varying vec2 texCoord;
+            varying vec2 texCoords;
 
             void main()
             {
-            	texCoord = vTexCoords;
-                color = vColor; 
+            	color = vColor; 
+            	texCoords = vTexCoords;
                 fN = normalize( uModel_view*vNormal ).xyz;
                 fE = -(uModel_view*vPosition).xyz;
                 fL = uLight_position.xyz - (uModel_view * vPosition).xyz;
@@ -44,7 +44,7 @@
             varying vec3 fN;
             varying vec3 fL;
             varying vec3 fE;
-            varying vec2 texCoord;
+            varying vec2 texCoords;
 
             // incoming uniform values
             uniform vec4  uColor;
@@ -56,7 +56,7 @@
             void main()
             {
 
-            	var myColor = texture2D( uTexture, texCoord );
+            	vec4 myColor = texture2D( uTexture, texCoords );
 
                 // Normalize the input lighting vectors
                 vec3 N = normalize(fN);
@@ -93,6 +93,8 @@
         <script type="text/javascript" src="Common/MV.js"></script>
         <script type="text/javascript" src="Common/MatrixStack.js"></script>
         <script type="text/javascript" src="textures/Checkerboard.js"></script>
+        <script type="text/javascript" src="textures/Stripes.js"></script>
+        <script type="text/javascript" src="textures/Fuzzy.js"></script>
         <script type="text/javascript" src="textures/ImageTexture.js"></script>
         <script type="text/javascript" src="geometry/Cube.js"></script>
         <script type="text/javascript" src="geometry/Cone.js"></script>
