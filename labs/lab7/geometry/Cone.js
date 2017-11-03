@@ -27,6 +27,10 @@ function Cone(numDivisions) {
         this.normals.push(vec4(0, -1, 0,0));
         this.normals.push(vec4(0, -1, 0,0));
 
+        this.texCoords.push(vec2(0.5,0.5));
+        this.texCoords.push(vec2(Math.cos(currentAngle)+0.5, Math.sin(currentAngle)+0.5));
+        this.texCoords.push(vec2(Math.cos(nextAngle)+0.5, Math.sin(nextAngle)+0.5));
+
         //Set colors
         this.colors.push(vec4(1.0,1.0,0.0,1));
         this.colors.push(vec4(0.7,0.0, 1.0,1));
@@ -41,7 +45,9 @@ function Cone(numDivisions) {
        this.normals.push(vec4(Math.cos(nextAngle),1,Math.sin(nextAngle),0));
        this.normals.push(vec4(Math.cos(currentAngle),1,Math.sin(currentAngle),0));
 
-
+        this.texCoords.push(vec2(1,0)); 
+        this.texCoords.push(vec2(0,nextAngle/(Math.PI*2))); 
+        this.texCoords.push(vec2(0,currentAngle/(Math.PI*2))); 
 
        this.colors.push(vec4(0.0,0.0,0.0,1));   
     }

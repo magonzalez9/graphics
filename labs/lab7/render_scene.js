@@ -116,8 +116,8 @@ function render()
     //stack.multiply(scalem(5,5,5));
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     checkerboard.activate(); 
-    Shapes.drawPrimitive(Shapes.disk);
-    //Shapes.helicopter.draw(); 
+    Shapes.drawPrimitive(Shapes.cone);
+    // Shapes.helicopter.draw(); 
     stack.pop();
 
    

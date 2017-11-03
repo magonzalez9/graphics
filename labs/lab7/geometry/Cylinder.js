@@ -27,6 +27,11 @@ function Cylinder(numDivisions) {
         this.normals.push(vec4(0,1,0,0));
         this.normals.push(vec4(0,1,0,0)); 
 
+        /* texCoords */
+        this.texCoords.push(vec2(0.5,0.5));
+        this.texCoords.push(vec2(Math.cos(currentAngle)+0.5, Math.sin(currentAngle)+0.5));
+        this.texCoords.push(vec2(Math.cos(nextAngle)+0.5, Math.sin(nextAngle)+0.5));
+
 
         //Bottom disk
         this.vertices.push(vec4(0, -1, 0,1)); // Center vertice
@@ -37,6 +42,11 @@ function Cylinder(numDivisions) {
         this.normals.push(vec4(0,-1,0,0));
         this.normals.push(vec4(0,-1,0,0)); 
 
+        /* texCoords */
+        this.texCoords.push(vec2(0.5,0.5));
+        this.texCoords.push(vec2(Math.cos(currentAngle)+0.5, Math.sin(currentAngle)+0.5));
+        this.texCoords.push(vec2(Math.cos(nextAngle)+0.5, Math.sin(nextAngle)+0.5));
+
         //Connect triangles
         this.vertices.push(vec4(Math.cos(currentAngle), 1, Math.sin(currentAngle),1));
         this.vertices.push(vec4(Math.cos(currentAngle), -1, Math.sin(currentAngle),1));
@@ -46,6 +56,12 @@ function Cylinder(numDivisions) {
         this.normals.push(vec4(Math.cos(currentAngle), 0, Math.sin(currentAngle),0)); 
         this.normals.push(vec4(Math.cos(nextAngle), 0, Math.sin(nextAngle),0)); 
 
+        /* texCoords */
+        this.texCoords.push(vec2(1,currentAngle/(Math.PI*2))); 
+        this.texCoords.push(vec2(-1,currentAngle/(Math.PI*2))); 
+        this.texCoords.push(vec2(1,nextAngle/(Math.PI*2))); 
+
+
         this.vertices.push(vec4(Math.cos(currentAngle), -1, Math.sin(currentAngle),1));
         this.vertices.push(vec4(Math.cos(nextAngle), 1, Math.sin(nextAngle),1));
         this.vertices.push(vec4(Math.cos(nextAngle), -1, Math.sin(nextAngle),1));
@@ -53,6 +69,11 @@ function Cylinder(numDivisions) {
         this.normals.push(vec4(Math.cos(currentAngle), 0, Math.sin(currentAngle),0)); 
         this.normals.push(vec4(Math.cos(nextAngle), 0, Math.sin(nextAngle),0)); 
         this.normals.push(vec4(Math.cos(nextAngle), 0, Math.sin(nextAngle),0)); 
+
+        /* texCoords */
+        this.texCoords.push(vec2(-1,currentAngle/(Math.PI*2))); 
+        this.texCoords.push(vec2(1,nextAngle/(Math.PI*2))); 
+        this.texCoords.push(vec2(-1,nextAngle/(Math.PI*2))); 
 
          //Set colors
         this.colors.push(vec4(0,0,0.0,1));
