@@ -29,8 +29,8 @@ function Cylinder(numDivisions) {
 
         /* texCoords */
         this.texCoords.push(vec2(0.5,0.5));
-        this.texCoords.push(vec2(Math.cos(currentAngle)+0.5, Math.sin(currentAngle)+0.5));
-        this.texCoords.push(vec2(Math.cos(nextAngle)+0.5, Math.sin(nextAngle)+0.5));
+        this.texCoords.push(vec2(.5*Math.cos(currentAngle)+0.5, .5*Math.sin(currentAngle)+0.5));
+        this.texCoords.push(vec2(.5*Math.cos(nextAngle)+0.5, .5*Math.sin(nextAngle)+0.5));
 
 
         //Bottom disk
@@ -57,8 +57,8 @@ function Cylinder(numDivisions) {
         this.normals.push(vec4(Math.cos(nextAngle), 0, Math.sin(nextAngle),0)); 
 
         /* texCoords */
+        this.texCoords.push(vec2(0,currentAngle/(Math.PI*2))); 
         this.texCoords.push(vec2(1,currentAngle/(Math.PI*2))); 
-        this.texCoords.push(vec2(-1,currentAngle/(Math.PI*2))); 
         this.texCoords.push(vec2(1,nextAngle/(Math.PI*2))); 
 
 
@@ -71,9 +71,9 @@ function Cylinder(numDivisions) {
         this.normals.push(vec4(Math.cos(nextAngle), 0, Math.sin(nextAngle),0)); 
 
         /* texCoords */
-        this.texCoords.push(vec2(-1,currentAngle/(Math.PI*2))); 
+        this.texCoords.push(vec2(0,currentAngle/(Math.PI*2))); 
         this.texCoords.push(vec2(1,nextAngle/(Math.PI*2))); 
-        this.texCoords.push(vec2(-1,nextAngle/(Math.PI*2))); 
+        this.texCoords.push(vec2(0,nextAngle/(Math.PI*2))); 
 
          //Set colors
         this.colors.push(vec4(0,0,0.0,1));

@@ -30,7 +30,7 @@ Checkerboard.prototype.makeCheckerboard = function () {
             var c = (patchx % 2 !== patchy % 2 ? 255 : 0);
             var k = 4 * (i * this.width + j);
             this.texels[k] = c;
-            this.texels[k + 1] = c;
+            this.texels[k + 1] = 150;
             this.texels[k + 2] = c;
             this.texels[k + 3] = 255;
         }

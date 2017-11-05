@@ -12,6 +12,7 @@ var checkerboard;
 var stripes;
 var fuzzy; 
 var imageTexture; 
+var uColorMode; 
 
 var camera = new Camera(); 
 var stack = new MatrixStack();
@@ -62,6 +63,7 @@ function shaderSetup() {
 
     // get handles for shader attribute variables. 
     // We will need these in setting up buffers.
+    uColorMode = gl.getUniformLocation(program, "uColorMode");
     vPosition = gl.getAttribLocation(program, "vPosition");
     vColor = gl.getAttribLocation(program, "vColor"); // we won't use vertex here
     vNormal = gl.getAttribLocation(program, "vNormal"); // colors but we keep it in for possible use later.
@@ -95,7 +97,9 @@ function render()
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     Shapes.axis.draw();
 
+    gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
    
+    //Draw Camera
     stack.push();
     stack.multiply(translate(lighting.light_position[0],lighting.light_position[1],lighting.light_position[2]));
     stack.multiply(scalem(.2,.2,.2));
@@ -103,22 +107,91 @@ function render()
     Shapes.drawPrimitive(Shapes.cube); 
     stack.pop(); 
 
-    // Draw Cylinder, Cone or Cylinder
-    // stack.push();
-    //Shapes.helicopter.draw(); 
-    // stack.multiply(translate(0,2,0,1));
-    // gl.uniform4fv(uColor, vec4(1.0, 1.0, 0.0, 1.0)); 
-    // gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    // Shapes.drawPrimitive(Shapes.cone);
-    // stack.pop();
+    //cube
+    stack.push();
+    gl.uniform1i(uColorMode,0);
+    stack.multiply(translate(4,0,0,1));
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    imageTexture.activate(); 
+    Shapes.drawPrimitive(Shapes.cube);
+    stack.pop();
+
+    //cube
+    stack.push();
+    gl.uniform1i(uColorMode,1);
+    stack.multiply(translate(4,0,3,1));
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    imageTexture.activate(); 
+    Shapes.drawPrimitive(Shapes.cube);
+    stack.pop();
+
+    //cube
+    stack.push();
+    gl.uniform1i(uColorMode,2);
+    stack.multiply(translate(4,0,-3,1));
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    imageTexture.activate(); 
+    Shapes.drawPrimitive(Shapes.cube);
+    stack.pop();
 
     stack.push();
-    //stack.multiply(scalem(5,5,5));
+    gl.uniform1i(uColorMode,2);
+    stack.multiply(translate(-4,0,0,1));
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    stripes.activate(); 
+    Shapes.drawPrimitive(Shapes.cylinder);
+    stack.pop();
+
+    stack.push();
+    gl.uniform1i(uColorMode,2);
+    stack.multiply(translate(-4,0,3,1));
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    imageTexture.activate(); 
+    Shapes.drawPrimitive(Shapes.cylinder);
+    stack.pop();
+
+    stack.push();
+    gl.uniform1i(uColorMode,3);
+    stack.multiply(translate(-4,0,-3,1));
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    imageTexture.activate(); 
+    Shapes.drawPrimitive(Shapes.cylinder);
+    stack.pop();
+
+    //Cone
+    stack.push();
+    gl.uniform1i(uColorMode,0);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     checkerboard.activate(); 
     Shapes.drawPrimitive(Shapes.cone);
-    // Shapes.helicopter.draw(); 
     stack.pop();
+
+    //Cone
+    stack.push();
+    stack.multiply(translate(0,0,3)); 
+    gl.uniform1i(uColorMode,2);
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    stripes.activate(); 
+    Shapes.drawPrimitive(Shapes.cone);
+    stack.pop();
+
+    //Cone
+    stack.push();
+    stack.multiply(translate(0,0,-3)); 
+    gl.uniform1i(uColorMode,2);
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    fuzzy.activate(); 
+    Shapes.drawPrimitive(Shapes.cone);
+    stack.pop();
+
+    // stack.push();
+    // gl.uniform1i(uColorMode,3);
+    // stack.multiply(translate(0,-1,0)); 
+    // stack.multiply(scalem(6,.1,6));
+    // gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top())); 
+    // stripes.activate(); 
+    // Shapes.drawPrimitive(Shapes.cube);  
+    // stack.pop(); 
 
    
    

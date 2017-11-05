@@ -16,6 +16,8 @@
             uniform mat4 uProjection;
             uniform mat4 uModel_view;
 
+
+
             // output values that will be interpreted per-fragment
             varying  vec3 fN;
             varying  vec3 fE;
@@ -45,6 +47,7 @@
             varying vec3 fL;
             varying vec3 fE;
             varying vec2 texCoords;
+            varying vec4 color; 
 
             // incoming uniform values
             uniform vec4  uColor;
@@ -52,11 +55,22 @@
             uniform vec4  uAmbient_product, uDiffuse_product, uSpecular_product;
             uniform float uShininess;
             uniform sampler2D uTexture;
+            uniform int uColorMode;
 
             void main()
             {
 
-            	vec4 myColor = texture2D( uTexture, texCoords );
+            	vec4 myColor;
+
+            	if(uColorMode == 0){
+            		myColor = color; 
+            	} else if (uColorMode == 1){
+            		myColor = uColor; 
+            	} else if (uColorMode == 2){
+            		myColor = texture2D( uTexture, texCoords );
+            	} else if (uColorMode == 3){
+            		myColor = vec4(1.0,1.0,1.0,1.0);
+            	}
 
                 // Normalize the input lighting vectors
                 vec3 N = normalize(fN);

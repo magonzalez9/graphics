@@ -115,7 +115,7 @@ function setKeyEventHandler() {
 
     var basePos = lighting.light_position; 
 document.getElementById("slider").oninput = function(){
-    lighting.light_position = mult(rotateX(document.getElementById("slider").value), basePos);
+    lighting.light_position = mult(rotateY(document.getElementById("slider").value), basePos);
     render(); 
 }
 }
