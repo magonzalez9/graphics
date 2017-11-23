@@ -9,7 +9,7 @@
 var Shapes = {};   // set up Shapes namespace
 
 Shapes.cube = new Cube();  
-Shapes.sphere = new Sphere(576); 
+Shapes.sphere = new Sphere(776); 
 Shapes.axis = new Axis();
 Shapes.cylinder = new Cylinder(20); 
 Shapes.disk = new Disk(20); 

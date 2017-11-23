@@ -45,7 +45,7 @@ window.onload = function init()
      checkerboard = new Checkerboard();
      stripes = new Stripes();
      fuzzy = new Fuzzy(); 
-     imageTexture = new ImageTexture("textures/earth.jpg");
+     imageTexture = new ImageTexture("textures/earth2.jpg");
     
     shaderSetup();
     Shapes.initShapes();  // create the primitive and other shapes       

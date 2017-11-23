@@ -11,14 +11,13 @@ function Sphere(num_sides) { //start with disks instead of cylinders
 
     // Local variables: unique vertices and colors.
     ////////////////////////////////////////////////////////////
-
     var color1 = vec4(0.0, 0.0, 1.0, 1.0); // blue
     var color2 = vec4(1.0, 0.0, 1.0, 1.0); // blue
     var color3 = vec4(0.0, 1.0, 1.0, 1.0); // blue
     
     var outside_vertices = [];  
     //put vertices in a their location
-    for (var i = 0; i < num_cylinders; i++) {
+    for (var i = 0; i <= num_cylinders; i++) {
         
         outside_vertices[i] = []; 
         var percent1 = (i* 3 * Math.PI/2)/ num_cylinders; //cos(pi/2) = 0
@@ -39,18 +38,18 @@ function Sphere(num_sides) { //start with disks instead of cylinders
     }
     
 
-    //color in triangles ERROR HERE!
+    //color in triangles
     for (var i = 0; i < num_cylinders; i++) {   
                 
         for (var j = 0; j < num_sides; j++) {
                         
             p1 = outside_vertices[i][j]; //norm
-            p2 = outside_vertices[(i+1)% num_sides][j]; //norm2
+            p2 = outside_vertices[(i+1)][j]; //norm2
             p3 = outside_vertices[i][(j + 1) % num_sides]; //norm3
             
             p4 = outside_vertices[i][(j + 1) % num_sides]; //norm3
-            p5 = outside_vertices[(i+1)% num_sides][j]; //norm2
-            p6 = outside_vertices[(i+1)% num_sides][(j + 1) % num_sides]; //norm4
+            p5 = outside_vertices[(i+1)][j]; //norm2
+            p6 = outside_vertices[(i+1)][(j + 1) % num_sides]; //norm4
             
         var percentage = (2*Math.PI *j)/num_sides;
         var percentage2 = (2*Math.PI *((j+1) % num_sides))/num_sides;
@@ -58,10 +57,11 @@ function Sphere(num_sides) { //start with disks instead of cylinders
         //note: w val is 0 for normals
         var ypercent = (i* 3 * Math.PI/2)/ num_cylinders;
         var ynorm = Math.cos(ypercent);
-        var norm = vec4(Math.cos(percentage),ynorm,Math.sin(percentage),0); //bottom disk normal
-        var norm2 = vec4(Math.cos(percentage2),ynorm,Math.sin(percentage),0); //bottom disk normal
-        var norm3 = vec4(Math.cos(percentage),ynorm,Math.sin(percentage2),0); //bottom disk normal
-        var norm4 = vec4(Math.cos(percentage2),ynorm,Math.sin(percentage2),0); //bottom disk normal
+
+        var norm = normalize (p1.slice (0, 3)).concat (0); 
+        var norm2 = normalize (p2.slice(0,3)).concat (0);
+        var norm3 = normalize (p3.slice(0,3)).concat (0);
+        var norm4 = normalize (p6.slice(0,3)).concat (0);
 
 
         //texcoords

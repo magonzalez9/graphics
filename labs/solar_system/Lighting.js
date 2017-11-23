@@ -19,7 +19,7 @@ function Lighting() {
     this.light_position = vec4(0, 8, 0, 1);
 
     // Light colors all set to white at the moment
-    this.ambientColor = vec4(2.0,2.0,2.0,1.0);
+    this.ambientColor = vec4(1.0,1.0,1.0,1.0);
     this.diffuseColor = vec4(1.0,1.0,1.0,1.0);
     this.specularColor = vec4(1.0,1.0,1.0,1.0);
 
@@ -27,7 +27,7 @@ function Lighting() {
 
     // These are really material properties and belong with each individual object but
     // for now we will lump them in here and they will apply to all objects.
-    this.ka = 0.2;
+    this.ka = 0.8;
     this.kd = 1.0;
     this.ks = 0.8;
     this.shininess = 50.0;
