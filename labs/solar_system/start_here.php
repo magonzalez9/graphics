@@ -62,10 +62,15 @@ include("../../visual/header.php"); ?>
             {
 
             	vec4 myColor;
+                vec4 disColor; 
 
             	if(uColorMode == 0){
             		myColor = color; 
             	} else if (uColorMode == 1){
+                   disColor = texture2D(uTexture, texCoords); 
+                    if (disColor.rgb == vec3(0.0,0.0,0.0)) { 
+                      discard;
+                    }
             		myColor = uColor; 
             	} else if (uColorMode == 2){
             		myColor = texture2D( uTexture, texCoords );
@@ -115,6 +120,7 @@ include("../../visual/header.php"); ?>
         <script type="text/javascript" src="geometry/Cone.js"></script>
         <script type="text/javascript" src="geometry/Cylinder.js"></script>
         <script type="text/javascript" src="geometry/Sphere.js"></script>
+        <script type="text/javascript" src="geometry/Sun.js"></script>
         <script type="text/javascript" src="geometry/Disk.js"></script>
         <script type="text/javascript" src="geometry/Helicopter.js"></script>
         <script type="text/javascript" src="geometry/Axis.js"></script>

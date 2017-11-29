@@ -45,7 +45,13 @@ window.onload = function init()
      checkerboard = new Checkerboard();
      stripes = new Stripes();
      fuzzy = new Fuzzy(); 
-     imageTexture = new ImageTexture("textures/earth2.jpg");
+     imageTexture = new ImageTexture("textures/earth.jpg");
+
+     sunTextrue = new ImageTexture("textures/sun.jpg");
+     earthTexture = new ImageTexture("textures/earth2.jpg");
+     saturnTexture = new ImageTexture("textures/saturn.jpg");
+     venusTexture = new ImageTexture("textures/venus.jpg")
+
     
     shaderSetup();
     Shapes.initShapes();  // create the primitive and other shapes       
@@ -109,14 +115,50 @@ function render()
 
     
 
-    //Earth
+    //RIngs
+    // stack.push();
+    // stack.multiply(translate(0,0,0)); 
+    //  stack.multiply(scalem(10,10,10)); 
+    // gl.uniform1i(uColorMode,2);
+    // gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    // imageTexture.activate(); 
+    // Shapes.drawPrimitive(Shapes.disk);
+    // stack.pop();
+
     stack.push();
-    stack.multiply(translate(0,0,0)); 
-     stack.multiply(scalem(5,5,5)); 
+    stack.multiply(translate(10,0,0)); 
+    stack.multiply(scalem(3,3,3)); 
     gl.uniform1i(uColorMode,2);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    imageTexture.activate(); 
+    earthTexture.activate(); 
     Shapes.drawPrimitive(Shapes.sphere);
+    stack.pop();
+
+    stack.push();
+    stack.multiply(translate(15,0,0)); 
+    stack.multiply(scalem(2,2,2)); 
+    gl.uniform1i(uColorMode,2);
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    venusTexture.activate(); 
+    Shapes.drawPrimitive(Shapes.sphere);
+    stack.pop();
+
+    stack.push();
+    stack.multiply(translate(30,0,0)); 
+    stack.multiply(scalem(4,4,4)); 
+    gl.uniform1i(uColorMode,2);
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    saturnTexture.activate(); 
+    Shapes.drawPrimitive(Shapes.sphere);
+    stack.pop();
+
+     stack.push();
+    stack.multiply(translate(0,0,0)); 
+    stack.multiply(scalem(4,4,4)); 
+    gl.uniform1i(uColorMode,2);
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    sunTextrue.activate(); 
+    Shapes.drawPrimitive(Shapes.sun);
     stack.pop();
 
    

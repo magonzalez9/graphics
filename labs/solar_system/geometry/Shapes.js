@@ -7,12 +7,12 @@
  */
 
 var Shapes = {};   // set up Shapes namespace
-
+Shapes.sun = new Sun(500); 
 Shapes.cube = new Cube();  
-Shapes.sphere = new Sphere(776); 
+Shapes.sphere = new Sphere(500); 
 Shapes.axis = new Axis();
-Shapes.cylinder = new Cylinder(20); 
-Shapes.disk = new Disk(20); 
+Shapes.cylinder = new Cylinder(36); 
+Shapes.disk = new Disk(16); 
 Shapes.cone = new Cone(20); 
 Shapes.helicopter = new Helicopter();// TO DO: ADD OTHER SHAPES
 
@@ -22,6 +22,7 @@ Shapes.initShapes = function () {
      Shapes.initBuffers(Shapes.sphere);
      Shapes.initBuffers(Shapes.disk);
      Shapes.initBuffers(Shapes.cone); 
+     Shapes.initBuffers(Shapes.sun); 
    
     // TO DO: ADD OTHER SHAPES 
     Shapes.axis.initBuffer();
