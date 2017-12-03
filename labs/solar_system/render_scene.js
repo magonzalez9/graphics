@@ -48,7 +48,7 @@ window.onload = function init()
      imageTexture = new ImageTexture("textures/earth.jpg");
 
      sunTextrue = new ImageTexture("textures/sun.jpg");
-     earthTexture = new ImageTexture("textures/earth2.jpg");
+     earthTexture = new ImageTexture("textures/test.jpg");
      saturnTexture = new ImageTexture("textures/saturn.jpg");
      venusTexture = new ImageTexture("textures/venus.jpg")
 
