@@ -115,12 +115,12 @@ function setKeyEventHandler() {
         var c = String.fromCharCode(e.keyCode);
         camera.keyAction(c);
         document.getElementById("keypress").innerHTML = "<b>Key pressed:</b> " + c + "<br>";
-        render();
+        // render();
     };
     
     var basePos = lighting.light_position;
     document.getElementById("slider").oninput = function(){
         lighting.light_position = mult(rotateY(document.getElementById("slider").value),basePos);
-        render();
+        // render();
     }
 }

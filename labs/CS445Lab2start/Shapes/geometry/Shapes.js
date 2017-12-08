@@ -13,9 +13,9 @@ Shapes.axis = new Axis();
 Shapes.cone = new Cone(20);
 Shapes.cylinder = new Cylinder();
 Shapes.disk = new Disk(36);
-Shapes.sphere = new Sphere(500);
+Shapes.sphere = new Sphere(36);
 Shapes.planetRing = new PlanetRing(36);
-Shapes.sun = new Sun(500); 
+Shapes.sun = new Sun(36); 
 // TO DO: ADD OTHER SHAPES
 
 Shapes.initShapes = function () {

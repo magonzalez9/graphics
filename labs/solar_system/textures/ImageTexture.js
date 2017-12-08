@@ -39,7 +39,7 @@ function ImageTexture(imageFile) {
         // We call render here to insure that render is called *after* the image 
         // loaded. Try removing this to see what happens. It may depend on the 
         // speed of your computer.
-        render();
+        //render();
     };    
 };
 

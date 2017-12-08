@@ -33,13 +33,15 @@ var fuzzy;
 var ringTexture;
 var uranusRing;
 
+var f = 1; 
+
 
 
 window.onload = function init()
 {   
     //set Event Handlers
-   // setKeyEventHandler();
-   // setMouseEventHandler();
+   setKeyEventHandler();
+   setMouseEventHandler();
    // setSliderEventHandler();
     
     canvas = document.getElementById( "gl-canvas" );
@@ -63,7 +65,7 @@ window.onload = function init()
     uranusTexture = new ImageTexture("textures/uranusTexture.png");
     neptuneTexture = new ImageTexture("textures/neptuneTexture.png");
     saturnTexture = new ImageTexture("textures/saturn.png");
-    earthTexture = new ImageTexture("textures/earthTexture.png");
+    earthTexture = new ImageTexture("textures/earthTexture.jpg");
     venusTexture = new ImageTexture("textures/venusTexture.png");
     sunTexture = new ImageTexture("textures/sunTexture.png");
     uranusRing = new ImageTexture("textures/uranusRing.png");
@@ -112,6 +114,9 @@ function shaderSetup() {
 
 function render()
 {
+
+      f+= 1; 
+      console.log(f);
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     var projMat = camera.calcProjectionMat();   // Projection matrix  
@@ -129,12 +134,11 @@ function render()
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     
     
-//    Shapes.axis.draw();
-    
      gl.uniform4fv(uColor, vec4(1.0, 0.7, 0.8, 1.0));
      
     
     stack.push();
+    stack.multiply(rotateY(f)); 
     stack.multiply(translate(0,0,0)); 
     stack.multiply(scalem(5,5,5)); 
     gl.uniform1i(uColorMode,2);
@@ -162,7 +166,7 @@ function render()
     
     stack.push();
     stack.multiply(translate(-5,0,12)); 
-    stack.multiply(scalem(2,2,2)); 
+    stack.multiply(scalem(0.1,0.1,0.1)); 
     gl.uniform1i(uColorMode,2);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     earthTexture.activate(); 
@@ -238,7 +242,7 @@ function render()
     // gl.uniform1i(uColorMode,2);
     // gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     // starsTexture.activate(); 
-    // Shapes.drawPrimitive(Shapes.sphere);
+    // Shapes.drawPrimitive(Shapes.cube);
     // stack.pop();
 
  
@@ -255,7 +259,7 @@ function render()
 //    stack.pop();
     
 
-    
+    requestAnimFrame(render); 
     
     
     

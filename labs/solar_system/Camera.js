@@ -111,7 +111,7 @@ Camera.prototype.motion = function () {
         default:
             console.log("unknown action: " + mouseState.action);
     }
-    render();
+    //render();
 };
 
 /**

@@ -145,7 +145,7 @@
                 </td>
         </table>
 
-         <!--  <td >
+          <td >
                     <div style = "background-color: LightGray">
                         <p> Keyboard Controls:</p>
                         <ul>
@@ -168,7 +168,7 @@
  
                     <p>light angle about y axis: 0% <input id="slider" type="range"
                   min="0" max="360" step="20" value="0" /> 100%</p>
-                </td> </tr> -->
+                </td> </tr>
     
 <div class="drop">
   <div class="option active placeholder" data-value="placeholder">
