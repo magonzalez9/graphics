@@ -146,7 +146,7 @@
         </table>
 
           <td >
-                    <div style = "background-color: LightGray">
+                <!--     <div style = "background-color: LightGray">
                         <p> Keyboard Controls:</p>
                         <ul>
                             <li>[r] ........ reset parameters</li> 
@@ -165,7 +165,7 @@
                    <div id="keypress"><b>Key pressed:</b> </div>
                     <div id="mouseAction"><b>Action:</b> </div>
                     <div id="mouseState"><b>Mouse State:</b></div>  
- 
+  -->
                     <p>light angle about y axis: 0% <input id="slider" type="range"
                   min="0" max="360" step="20" value="0" /> 100%</p>
                 </td> </tr>

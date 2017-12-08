@@ -115,7 +115,7 @@ function setKeyEventHandler() {
         var c = String.fromCharCode(e.keyCode);
         camera.keyAction(c);
         document.getElementById("keypress").innerHTML = "<b>Key pressed:</b> " + c + "<br>";
-        // render();
+       
     };
     
     var basePos = lighting.light_position;

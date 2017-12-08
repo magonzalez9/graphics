@@ -9,4 +9,3 @@ function Sun(num_sides) { //start with disks instead of cylinders
     }
  
 }
-

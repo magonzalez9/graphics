@@ -22,6 +22,9 @@ $(document).ready(function() {
         switch(val) {
             case 'sun':
                //Set audio
+               // camera.calculateNewPosistion(vec4[0,0,0,1]);
+               // render();
+
                audio = 'sunAudio';
 
                //Show planet data

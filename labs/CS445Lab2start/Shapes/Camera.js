@@ -9,7 +9,7 @@ function Camera() {
     this.zFar = 500;         // camera's near plane
 
 // Camera *initial* location and orientation parameters
-    this.eye_start = vec4([0, 4, 25, 1]); // initial camera location (needed for reseting)   
+    this.eye_start = vec4([0, 4, 80, 1]); // initial camera location (needed for reseting)   
     this.VPN = vec4([0, 0, 1, 0]);  // used to initialize uvn
     this.VUP = vec4([0, 1, 0, 0]);  // used to initialize uvn  
     this.homogenous = vec4([0,0,0,1]);
@@ -29,6 +29,12 @@ Camera.prototype.reset = function () {
     this.eye = vec4(this.eye_start);
     this.calcUVN();
 };
+
+Camera.prototype.calculateNewPosistion = function (planetPosistion) {
+    this.eye = vec4(planetPosistion);
+    this.calcUVN();
+
+}
 
 /*
  * Calculate the *initial* viewRotation matrix of camera
