@@ -4,12 +4,12 @@
  */
 function Camera() {
 
-    this.fov = 60;           // Field-of-view in Y direction angle (in degrees)
-    this.zNear = 0.1;        // camera's far plane
-    this.zFar = 500;         // camera's near plane
+    this.fov = 40;           // Field-of-view in Y direction angle (in degrees)
+    this.zNear = 2.1;        // camera's far plane
+    this.zFar = 550;         // camera's near plane
 
 // Camera *initial* location and orientation parameters
-    this.eye_start = vec4([0, 4, 80, 1]); // initial camera location (needed for reseting)   
+    this.eye_start = vec4([100,10, 210, 1]); // initial camera location (needed for reseting)   
     this.VPN = vec4([0, 0, 1, 0]);  // used to initialize uvn
     this.VUP = vec4([0, 1, 0, 0]);  // used to initialize uvn  
     this.homogenous = vec4([0,0,0,1]);
@@ -26,6 +26,7 @@ function Camera() {
  * @return none
  */
 Camera.prototype.reset = function () {
+    window.location.reload();
     this.eye = vec4(this.eye_start);
     this.calcUVN();
 };
@@ -33,6 +34,7 @@ Camera.prototype.reset = function () {
 Camera.prototype.calculateNewPosistion = function (planetPosistion) {
     this.eye = vec4(planetPosistion);
     this.calcUVN();
+    console.log(planetPosistion);
 
 }
 

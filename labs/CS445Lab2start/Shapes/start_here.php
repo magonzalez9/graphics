@@ -125,6 +125,7 @@
         <script type="text/javascript" src="geometry/Cylinder.js"></script>
         <script type="text/javascript" src="geometry/Cone.js"></script>
         <script type="text/javascript" src="geometry/Gun.js"></script>
+        <script type="text/javascript" src="geometry/Uranus.js"></script>
         <script type="text/javascript" src="geometry/Axis.js"></script>
         <script type="text/javascript" src="geometry/Shapes.js"></script>
         <script type="text/javascript" src="Camera.js"></script>
@@ -145,7 +146,7 @@
                 </td>
         </table>
 
-          <td >
+          <!-- <td > -->
                 <!--     <div style = "background-color: LightGray">
                         <p> Keyboard Controls:</p>
                         <ul>
@@ -166,9 +167,9 @@
                     <div id="mouseAction"><b>Action:</b> </div>
                     <div id="mouseState"><b>Mouse State:</b></div>  
   -->
-                    <p>light angle about y axis: 0% <input id="slider" type="range"
+                    <!-- <p>light angle about y axis: 0% <input id="slider" type="range"
                   min="0" max="360" step="20" value="0" /> 100%</p>
-                </td> </tr>
+                </td> </tr> -->
     
 <div class="drop">
   <div class="option active placeholder" data-value="placeholder">

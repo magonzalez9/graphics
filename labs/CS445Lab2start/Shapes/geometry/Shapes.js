@@ -16,6 +16,7 @@ Shapes.disk = new Disk(36);
 Shapes.sphere = new Sphere(36);
 Shapes.planetRing = new PlanetRing(36);
 Shapes.sun = new Sun(36); 
+Shapes.uranus = new Uranus();
 // TO DO: ADD OTHER SHAPES
 
 Shapes.initShapes = function () {
@@ -130,11 +131,11 @@ Shapes.drawWiredPrimitive = function (primitive) {
     gl.uniform4fv(uColor, vec4(0.0, 0.0, 0.0, 1.0)); 
 //    gl.bindBuffer(gl.ARRAY_BUFFER, primitive.edgeBuffer);
     gl.enableVertexAttribArray(vPosition);
-    gl.vertexAttribPointer(vPosition, 4, gl.FLOAT, false, 0, 0);
+    //gl.vertexAttribPointer(vPosition, 4, gl.FLOAT, false, 0, 0);
 
 //    gl.bindBuffer(gl.ARRAY_BUFFER, primitive.edgeColorBuffer);
     gl.enableVertexAttribArray(vColor);
-    gl.vertexAttribPointer(vColor, 4, gl.FLOAT, false, 0, 0);
+   // gl.vertexAttribPointer(vColor, 4, gl.FLOAT, false, 0, 0);
 
 //    gl.drawArrays(gl.LINES, 0, primitive.numEdgeVertices);
 

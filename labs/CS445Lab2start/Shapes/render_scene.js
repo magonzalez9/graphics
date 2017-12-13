@@ -16,8 +16,7 @@ var program;
 var lighting = new Lighting();
 var camera = new Camera(); 
 var stack = new MatrixStack();
-var checkerboard;
-var imageTexture;
+
 var marsTexture;
 var mercuryTexture;
 var jupiterTexture;
@@ -28,11 +27,9 @@ var venusTexture;
 var sunTexture;
 var saturnTexture;
 var saturnRing;
-var stripes;
-var fuzzy;
 var ringTexture;
 var uranusRing;
-var pivotColumnTheta = 0;
+
 var rotateTheta = 0;
 var marsTheta = 0;
 var jupiterTheta = 0;
@@ -43,9 +40,57 @@ var mercuryRotateSpeed =0;
 var venusRotateSpeed =0;
 var marsRotateSpeed=0;
 var saturnRotateSpeed =0;
+var earthRotationPeriod = 0;
+var mercuryRotationPeriod = 0;
+var venusRotationPeriod =0;
+var marsRotationPeriod =0;
+var jupiterRotationPeriod=0;
+var saturnRotationPeriod=0;
+var uranusRotationPeriod=0;
+var neptuneRotationPeriod=0;
 
+var earthXPosition;
+var earthYPosition;
+var earthZPosition;
 
+var marsXPosition;
+var marsYPosition;
+var marsZPosition;
 
+var jupiterXPosition;
+var jupiterYPosition;
+var jupiterZPosition;
+
+var mercuryXPosition;
+var mercuryYPosition;
+var mercuryZPosition;
+
+var saturnYPosition;
+var saturnXPosition;
+var saturnZPosition;
+
+var uranusXPosition;
+var uranusYPosition;
+var uranusZPosition;
+
+var neptuneXPosition;
+var neptuneYPosition;
+var neptuneZPosition;
+
+var venusXPosition;
+var venusYPosition;
+var venusZPosition;
+
+var mercuryThetaVal = .005;
+var earthThetaVal = .00304878;
+var marsThetaVal = .002512563;
+var jupiterThetaVal = .00136612;
+var saturnThetaVal = .001077586;
+var uranusThetaVal = .0009;
+var neptuneThetaVal = .0001;
+var venusThetaVal = .00297619;
+
+// alert('hello');
 window.onload = function init()
 {   
     //set Event Handlers
@@ -66,10 +111,10 @@ window.onload = function init()
     gl.enable(gl.DEPTH_TEST);
  
     checkerboard = new Checkerboard();
-    starsTexture = new ImageTexture("textures/stars.jpg");
+    starsTexture = new ImageTexture("textures/stars2.jpg");
     imageTexture = new ImageTexture("textures/test.jpg");;
     marsTexture = new ImageTexture("textures/marsTexture.png");
-    mercuryTexture = new ImageTexture("textures/download.png");
+    mercuryTexture = new ImageTexture("textures/mercuryTexture.jpg");
     jupiterTexture = new ImageTexture("textures/jupiterTexture.png");
     uranusTexture = new ImageTexture("textures/uranusTexture.png");
     neptuneTexture = new ImageTexture("textures/neptuneTexture.png");
@@ -79,6 +124,7 @@ window.onload = function init()
     sunTexture = new ImageTexture("textures/sunTexture.png");
     uranusRing = new ImageTexture("textures/uranusRing.png");
     saturnRing = new ImageTexture("textures/saturnRing.png");
+    ringTexture = new ImageTexture("textures/rings.png");
     stripes = new Stripes();
     fuzzy = new Fuzzy();
     
@@ -140,28 +186,31 @@ function render()
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     
     
-//    Shapes.axis.draw();
-    
      gl.uniform4fv(uColor, vec4(1.0, 0.7, 0.8, 1.0));
     
 
-    pivotColumnTheta += .1;
-    marsTheta += .15
-    jupiterTheta += .00000001;
-    rotateTheta += .00304878
-    jupiterRotateTheta += .00136612;
-    neptuneRotateSpeed += .0001;
-    uranusRotateSpeed += .0009;
-    mercuryRotateSpeed += .005;
-    venusRotateSpeed += .00297619;
-    marsRotateSpeed += .002512563;
-    saturnRotateSpeed += .001077586;
+    marsTheta += marsThetaVal;
+    rotateTheta += earthThetaVal;
+    jupiterRotateTheta += jupiterThetaVal;
+    neptuneRotateSpeed += neptuneThetaVal;
+    uranusRotateSpeed += uranusThetaVal;
+    mercuryRotateSpeed += mercuryThetaVal;
+    venusRotateSpeed += venusThetaVal;
+    marsRotateSpeed += marsThetaVal;
+    saturnRotateSpeed += saturnThetaVal;
 
-
+    earthRotationPeriod+= .1;
+    mercuryRotationPeriod += .0172462;
+    venusRotationPeriod += .0041149;
+    marsRotationPeriod += .102;
+    jupiterRotationPeriod += .241;
+    saturnRotationPeriod += .227117874;
+    uranusRotationPeriod+= -.139211783;
+    neptuneRotationPeriod+= .14897;
     
     stack.push();
     stack.multiply(translate(0,0,0)); 
-    stack.multiply(scalem(5,5,5)); 
+    stack.multiply(scalem(30,30,30));
     gl.uniform1i(uColorMode,2);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     sunTexture.activate(); 
@@ -169,26 +218,37 @@ function render()
     stack.pop();
     
     stack.push();
-    stack.multiply(translate(7*Math.cos(mercuryRotateSpeed),0,7*Math.sin(mercuryRotateSpeed)));
+    stack.multiply(translate(35*Math.cos(mercuryRotateSpeed),0,35*Math.sin(mercuryRotateSpeed)));
+    mercuryXPosition = 35*Math.cos(mercuryRotateSpeed);
+    mercuryYPosition= 0;
+    mercuryZPosition= 35*Math.sin(mercuryRotateSpeed);
+    stack.multiply(rotateY(mercuryRotationPeriod));
+    stack.multiply(scalem(.5,.5,.5));
     gl.uniform1i(uColorMode,2);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     mercuryTexture.activate(); 
     Shapes.drawPrimitive(Shapes.sphere);
     stack.pop();
-    
+
     stack.push();
-    stack.multiply(scalem(1,1,1));
-    // stack.multiply(translate(5,0,16));
-    stack.multiply(translate(21*Math.cos(marsRotateSpeed),0,21*Math.sin(marsRotateSpeed)));
+    stack.multiply(translate(45*Math.cos(venusRotateSpeed),0,45*Math.sin(venusRotateSpeed)));
+    venusXPosition = 45*Math.cos(venusRotateSpeed);
+    venusYPosition= 0;
+    venusZPosition= 45*Math.sin(venusRotateSpeed);
+    stack.multiply(rotateY(venusRotationPeriod));
+    stack.multiply(scalem(1.2,1.2,1.2)); 
     gl.uniform1i(uColorMode,2);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    marsTexture.activate(); 
+    venusTexture.activate(); 
     Shapes.drawPrimitive(Shapes.sphere);
     stack.pop();
-    
-    stack.push();
-    stack.multiply(scalem(2,2,2)); 
-    stack.multiply(translate(9*Math.cos(rotateTheta),0,9*Math.sin(rotateTheta)));
+
+    stack.push(); 
+    stack.multiply(translate(53*Math.cos(rotateTheta),0,53*Math.sin(rotateTheta)));
+    earthXPosition = 53*Math.cos(rotateTheta);
+    earthYPosition= 0;
+    earthZPosition= 53*Math.sin(rotateTheta);
+    stack.multiply(rotateY(earthRotationPeriod));
     gl.uniform1i(uColorMode,2);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     earthTexture.activate(); 
@@ -196,96 +256,81 @@ function render()
     stack.pop();
     
     stack.push();
-    // stack.multiply(translate(-50,0,-50));
-    stack.multiply(scalem(5,5,5));
-    // stack.multiply(rotateY(jupiterTheta));
-    stack.multiply(translate(5*Math.cos(jupiterRotateTheta),0,5*Math.sin(jupiterRotateTheta)));
+    stack.multiply(translate(62*Math.cos(marsRotateSpeed),0,62*Math.sin(marsRotateSpeed)));
+    marsXPosition = 62*Math.cos(marsRotateSpeed);
+    marsZPosition = 62*Math.sin(marsRotateSpeed);
+    stack.multiply(rotateY(marsRotationPeriod));
+    stack.multiply(scalem(.7,.7,.7));
+    gl.uniform1i(uColorMode,2);
+    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
+    marsTexture.activate(); 
+    Shapes.drawPrimitive(Shapes.sphere);
+    stack.pop();
+    
+    stack.push();
+    stack.multiply(translate(100*Math.cos(jupiterRotateTheta),0,100*Math.sin(jupiterRotateTheta)));
+    jupiterXPosition = 100*Math.cos(jupiterRotateTheta);
+    jupiterYPosition = 0;
+    jupiterZPosition = 100*Math.sin(jupiterRotateTheta);
+    stack.multiply(rotateY(jupiterRotationPeriod)); 
+    stack.multiply(scalem(11,11,11));
     gl.uniform1i(uColorMode,2);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     jupiterTexture.activate(); 
     Shapes.drawPrimitive(Shapes.sphere);
     stack.pop();
     
-    stack.push();
-    // stack.multiply(translate(40,0,-40)); 
-    stack.multiply(scalem(3,3,3)); 
-    stack.multiply(translate(12*Math.cos(saturnRotateSpeed),0,12*Math.sin(saturnRotateSpeed)));
-    gl.uniform1i(uColorMode,2);
+    stack.push(); 
+    stack.multiply(translate(150*Math.cos(saturnRotateSpeed),0,150*Math.sin(saturnRotateSpeed)));
+    saturnXPosition = 150*Math.cos(saturnRotateSpeed);
+    saturnYPosition= 0;
+    saturnZPosition= 150*Math.sin(saturnRotateSpeed);
+    stack.multiply(rotateY(saturnRotationPeriod));
+    // gl.uniform1i(uColorMode,2);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    saturnTexture.activate(); 
-    Shapes.drawPrimitive(Shapes.sphere);
+    // saturnTexture.activate(); 
+    Shapes.uranus.draw();
     stack.pop();
     
-    // stack.push();
-    // stack.multiply(scalem(4,4,4)); 
-    //     stack.multiply(translate(8*Math.cos(rotateTheta),0,8*Math.sin(rotateTheta)));
-    // gl.uniform1i(uColorMode,1);
-    // gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    // saturnRing.activate(); 
-    // Shapes.drawPrimitive(Shapes.disk);
-    // stack.pop();
-    
     stack.push();
-    // stack.multiply(translate(-25,0,0));
-    stack.multiply(scalem(2,2,2));
-    stack.multiply(translate(22*Math.cos(uranusRotateSpeed),0,22*Math.sin(uranusRotateSpeed)));
+    stack.multiply(translate(200*Math.cos(uranusRotateSpeed),0,200*Math.sin(uranusRotateSpeed)));
+    uranusXPosition = 200*Math.cos(uranusRotateSpeed);
+    uranusYPosition= 0;
+    uranusZPosition= 200*Math.sin(uranusRotateSpeed);
+    stack.multiply(rotateZ(uranusRotationPeriod));
+    stack.multiply(scalem(4,4,4));
     gl.uniform1i(uColorMode,2);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     uranusTexture.activate(); 
     Shapes.drawPrimitive(Shapes.sphere);
     stack.pop();
-
-    stack.push();
-    stack.multiply(translate(-25,0,0));
-    stack.multiply(scalem(4,4,4));
-    gl.uniform1i(uColorMode,1);
-    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    uranusRing.activate(); 
-    Shapes.drawPrimitive(Shapes.disk);
-    stack.pop();
     
     stack.push();
-    // stack.multiply(translate(30,0,-5));
-    stack.multiply(scalem(2,2,2));
-    stack.multiply(translate(24*Math.cos(neptuneRotateSpeed),0,24*Math.sin(neptuneRotateSpeed)));
+    stack.multiply(translate(250*Math.cos(neptuneRotateSpeed),0,250*Math.sin(neptuneRotateSpeed)));
+    neptuneXPosition = 250*Math.cos(neptuneRotateSpeed);
+    neptuneYPosition= 0;
+    neptuneZPosition= 250*Math.sin(neptuneRotateSpeed);
+    stack.multiply(rotateY(neptuneRotationPeriod));
+    stack.multiply(scalem(3.8,3.8,3.8));
     gl.uniform1i(uColorMode,2);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
     neptuneTexture.activate(); 
     Shapes.drawPrimitive(Shapes.sphere);
     stack.pop();
-    
+
     stack.push();
-    stack.multiply(scalem(1.5,1.5,1.5)); 
-    stack.multiply(translate(7*Math.cos(venusRotateSpeed),0,7*Math.sin(venusRotateSpeed)));
+    stack.multiply(translate(0,0,0)); 
+    stack.multiply(scalem(300,300,300));
     gl.uniform1i(uColorMode,2);
     gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    venusTexture.activate(); 
-    Shapes.drawPrimitive(Shapes.sphere);
+    starsTexture.activate(); 
+    Shapes.drawPrimitive(Shapes.sun);
     stack.pop();
-
-    // stack.push();
-    // stack.multiply(translate(0,0,0)); 
-    // stack.multiply(scalem(20,20,20)); 
-    // gl.uniform1i(uColorMode,2);
-    // gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-    // starsTexture.activate(); 
-    // Shapes.drawPrimitive(Shapes.sphere);
-    // stack.pop();
-
- 
-
-
-//    
-//     stack.push();
-//    stack.multiply(translate(-12,0,-10));
-//    stack.multiply(scalem(3,3,3));
-//    gl.uniform1i(uColorMode,1);
-//    gl.uniformMatrix4fv(uModel_view, false, flatten(stack.top()));
-//    uranusRing.activate(); 
-//    Shapes.drawPrimitive(Shapes.disk);
-//    stack.pop();
     
-requestAnimFrame(render);
+
+    
+    
+    requestAnimFrame(render);
 
     
     

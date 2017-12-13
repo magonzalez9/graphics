@@ -71,14 +71,14 @@ function setMouseEventHandler() {
         mouseState.dely = 0;
         mouseState.down = true;
         mouseState.action = e.button;
-        document.getElementById("mouseAction").innerHTML ="<b>Action:</b> Mouse Down <br>" ;
-        document.getElementById("mouseState").innerHTML = mouseState.displayMouseState();
+        // document.getElementById("mouseAction").innerHTML ="<b>Action:</b> Mouse Down <br>" ;
+        // document.getElementById("mouseState").innerHTML = mouseState.displayMouseState();
     });
     canvas.addEventListener("mouseup", function (e) {
        // console.log("mouse up");
         mouseState.reset();
-        document.getElementById("mouseAction").innerHTML ="<b>Action:</b> resetting - Mouse Up <br>" ;
-        document.getElementById("mouseState").innerHTML =  mouseState.displayMouseState();
+        // document.getElementById("mouseAction").innerHTML ="<b>Action:</b> resetting - Mouse Up <br>" ;
+        // document.getElementById("mouseState").innerHTML =  mouseState.displayMouseState();
         
     });
     canvas.addEventListener("mousewheel", function (e) {
@@ -88,8 +88,8 @@ function setMouseEventHandler() {
         mouseState.delx = e.wheelDelta;
         mouseState.dely = e.wheelDelta;
         camera.motion();
-        document.getElementById("mouseAction").innerHTML ="<b>Action:</b> Mouse wheel <br>";
-        document.getElementById("mouseState").innerHTML = mouseState.displayMouseState();
+        // document.getElementById("mouseAction").innerHTML ="<b>Action:</b> Mouse wheel <br>";
+        // document.getElementById("mouseState").innerHTML = mouseState.displayMouseState();
     });
     canvas.addEventListener("mousemove", function (e) {
         if (mouseState.down) {
@@ -99,8 +99,8 @@ function setMouseEventHandler() {
             mouseState.dely = mouseState.y - mouseState.starty;
             camera.motion();
         }
-        document.getElementById("mouseAction").innerHTML ="<b>Action:</b> Mouse Move <br>";
-        document.getElementById("mouseState").innerHTML = mouseState.displayMouseState();
+        //document.getElementById("mouseAction").innerHTML ="<b>Action:</b> Mouse Move <br>";
+        //document.getElementById("mouseState").innerHTML = mouseState.displayMouseState();
     });
 }
 
@@ -114,13 +114,13 @@ function setKeyEventHandler() {
     window.onkeydown = function (e) {
         var c = String.fromCharCode(e.keyCode);
         camera.keyAction(c);
-        document.getElementById("keypress").innerHTML = "<b>Key pressed:</b> " + c + "<br>";
+        //document.getElementById("keypress").innerHTML = "<b>Key pressed:</b> " + c + "<br>";
        
     };
     
-    var basePos = lighting.light_position;
-    document.getElementById("slider").oninput = function(){
-        lighting.light_position = mult(rotateY(document.getElementById("slider").value),basePos);
-        // render();
-    }
+    // var basePos = lighting.light_position;
+    // document.getElementById("slider").oninput = function(){
+    //     lighting.light_position = mult(rotateY(document.getElementById("slider").value),basePos);
+    //     // render();
+    // }
 }

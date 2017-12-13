@@ -22,8 +22,8 @@ $(document).ready(function() {
         switch(val) {
             case 'sun':
                //Set audio
-               // camera.calculateNewPosistion(vec4[0,0,0,1]);
-               // render();
+               camera.calculateNewPosistion(vec4(0,0,90,1));
+               
 
                audio = 'sunAudio';
 
@@ -37,6 +37,17 @@ $(document).ready(function() {
             break;
             case 'mercury':
                //Set audio
+               camera.calculateNewPosistion(vec4(mercuryXPosition,mercuryYPosition,mercuryZPosition+7,1));
+               mercuryThetaVal = 0;
+               marsThetaVal = 0;
+               earthThetaVal  = 0;
+               jupiterThetaVal = 0;
+               neptuneThetaVal = 0;
+               uranusThetaVal = 0;
+               venusThetaVal = 0;
+               marsThetaVal = 0;
+               saturnThetaVal = 0;
+              
                audio = 'mercuryAudio';
 
               //show planet data
@@ -48,6 +59,17 @@ $(document).ready(function() {
                 }, 1500); 
             break; 
             case 'venus':
+              camera.calculateNewPosistion(vec4(venusXPosition,venusYPosition,venusZPosition+5,1));
+              mercuryThetaVal = 0;
+               marsThetaVal = 0;
+               earthThetaVal  = 0;
+               jupiterThetaVal = 0;
+               neptuneThetaVal = 0;
+               uranusThetaVal = 0;
+               venusThetaVal = 0;
+               marsThetaVal = 0;
+               saturnThetaVal = 0;
+              
                //Set audio
                audio = 'venusAudio';
 
@@ -60,6 +82,18 @@ $(document).ready(function() {
                 }, 1500); 
                break; 
             case 'earth':
+
+               camera.calculateNewPosistion(vec4(earthXPosition,earthYPosition,earthZPosition+5,1));
+               mercuryThetaVal = 0;
+               marsThetaVal = 0;
+               earthThetaVal  = 0;
+               jupiterThetaVal = 0;
+               neptuneThetaVal = 0;
+               uranusThetaVal = 0;
+               venusThetaVal = 0;
+               marsThetaVal = 0;
+               saturnThetaVal = 0;
+            
                //Set audio
                audio = 'earthAudio';
 
@@ -72,6 +106,19 @@ $(document).ready(function() {
                 }, 1500); 
                 break;
             case 'mars':
+
+               camera.calculateNewPosistion(vec4(marsXPosition,0,marsZPosition+5,1));
+               mercuryThetaVal = 0;
+               marsThetaVal = 0;
+               earthThetaVal  = 0;
+               jupiterThetaVal = 0;
+               neptuneThetaVal = 0;
+               uranusThetaVal = 0;
+               venusThetaVal = 0;
+               marsThetaVal = 0;
+               saturnThetaVal = 0;
+            
+
                //Set audio
                audio = 'marsAudio';
 
@@ -84,6 +131,19 @@ $(document).ready(function() {
                 }, 1500); 
                 break;
             case 'jupiter':
+              
+              camera.calculateNewPosistion(vec4(jupiterXPosition,jupiterYPosition,jupiterZPosition+50,1));
+              jupiterThetaVal = 0;
+              mercuryThetaVal = 0;
+               marsThetaVal = 0;
+               earthThetaVal  = 0;
+               jupiterThetaVal = 0;
+               neptuneThetaVal = 0;
+               uranusThetaVal = 0;
+               venusThetaVal = 0;
+               marsThetaVal = 0;
+               saturnThetaVal = 0;
+         
                //Set audio
                audio = 'jupiterAudio';
 
@@ -96,6 +156,17 @@ $(document).ready(function() {
                 }, 1500); 
                break; 
             case 'saturn':
+               camera.calculateNewPosistion(vec4(saturnXPosition,saturnYPosition,saturnZPosition+40,1));
+               mercuryThetaVal = 0;
+               marsThetaVal = 0;
+               earthThetaVal  = 0;
+               jupiterThetaVal = 0;
+               neptuneThetaVal = 0;
+               uranusThetaVal = 0;
+               venusThetaVal = 0;
+               marsThetaVal = 0;
+               saturnThetaVal = 0;
+              
                //Set audio
                audio = 'saturnAudio';
 
@@ -108,6 +179,17 @@ $(document).ready(function() {
                 }, 1500); 
                break;
             case 'uranus':
+               camera.calculateNewPosistion(vec4(uranusXPosition,uranusYPosition,uranusZPosition+30,1));
+               mercuryThetaVal = 0;
+               marsThetaVal = 0;
+               earthThetaVal  = 0;
+               jupiterThetaVal = 0;
+               neptuneThetaVal = 0;
+               uranusThetaVal = 0;
+               venusThetaVal = 0;
+               marsThetaVal = 0;
+               saturnThetaVal = 0;
+               
                //Set audio
                audio = 'unAudio';
 
@@ -120,6 +202,18 @@ $(document).ready(function() {
                 }, 1500); 
                break;
             case 'neptune':
+               camera.calculateNewPosistion(vec4(neptuneXPosition,neptuneYPosition,neptuneZPosition+30,1));
+               mercuryThetaVal = 0;
+               marsThetaVal = 0;
+               earthThetaVal  = 0;
+               jupiterThetaVal = 0;
+               neptuneThetaVal = 0;
+               uranusThetaVal = 0;
+               venusThetaVal = 0;
+               marsThetaVal = 0;
+               saturnThetaVal = 0;
+         
+               
                //Set audio
                audio = 'unAudio';
 
@@ -131,8 +225,12 @@ $(document).ready(function() {
                 'scrollTop':   $('br').offset().top
                 }, 1500);
                 break; 
+
+            case 'deselect':
+            location.reload();
+            break; 
             default:
-              camera.eye = vec4([2, 4, 3, 1]);
+              
               $('.sunInfo').hide(); 
               $('.mercuryInfo').hide(); 
               $('.venusInfo').hide(); 

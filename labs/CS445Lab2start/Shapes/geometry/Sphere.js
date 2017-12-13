@@ -153,5 +153,6 @@ function Sphere(num_sides) { //start with disks instead of cylinders
             this.texCoords.push(t1,t2,t3,t4,t5,t6);
         }
         
-    }}
+    }
+}
 }
